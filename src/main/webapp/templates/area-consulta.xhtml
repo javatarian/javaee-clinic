@@ -5,6 +5,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     <h:form id="form-cons">
         <p:dataTable styleClass="text-center tabela" var="consulta" value="#{consultaBean.consultas}" paginator="true" rows="10" rowKey="#{consulta.id}"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
@@ -13,7 +14,7 @@
             <p:ajax event="rowSelect" listener="#{consultaBean.onRowSelect}" update="@(.dialogConsulta) @this" oncomplete="PF('dialogVisualizaConsulta').show()" />
 
             <f:facet name="header">
-                <h2>Consultas</h2>
+                <p class="font-title">Consultas</p>
             </f:facet>
             <p:column headerText="Data" sortBy="#{consulta.dataConsulta}" filterBy="#{consulta.dataConsulta}" filterMatchMode="contains">
                 <h:outputText value="#{consulta.dataConsulta}" />

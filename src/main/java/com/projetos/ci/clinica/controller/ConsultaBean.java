@@ -6,15 +6,11 @@
 package com.projetos.ci.clinica.controller;
 
 import com.projetos.ci.clinica.entity.Consulta;
-import com.projetos.ci.clinica.entity.Medico;
-import com.projetos.ci.clinica.entity.Paciente;
 import com.projetos.ci.clinica.service.ConsultaService;
 import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;

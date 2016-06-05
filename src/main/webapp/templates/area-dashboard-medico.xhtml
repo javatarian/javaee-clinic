@@ -12,8 +12,9 @@
                      filteredValue="#{medicoBean.medicosFiltrados}" widgetVar="medicoTable" emptyMessage="Nenhum médico foi encontrado">
             <p:ajax event="rowSelect" listener="#{medicoBean.onRowSelect}" update="@(.dialogMedico) @this" oncomplete="PF('dialogVisualizaMedico').show()" />
 
+
             <f:facet name="header">
-                <h2>Médicos</h2>
+                <p class="font-title">Médicos</p>
             </f:facet>
             <p:column headerText="Nome" sortBy="#{medico.nome}" filterBy="#{medico.nome}" filterMatchMode="contains">
                 <h:outputText value="#{medico.nome}" />

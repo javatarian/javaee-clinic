@@ -6,8 +6,8 @@
                 xmlns:p="http://primefaces.org/ui">
     <div class="ui-grid ui-grid-responsive">
         <div class="ui-grid-row">
-            <div class="ui-grid-col-3"/>
-            <div class="ui-grid-col-6">
+            <div class="ui-grid-col-4"/>
+            <div class="ui-grid-col-4">
                 <h:form>
                     <p:growl id="growlLogin" life="2000" />
 
@@ -15,18 +15,19 @@
                     <p:panel header="Acessar o Sistema">
                         <h:panelGrid columns="3" cellpadding="5">
                             <h:outputLabel for="login" value="Login:" /> 
-                            <p:inputText id="login" value="#{sessionBean.login}" label="Login"/>
+                            <p:inputText id="login" value="#{sessionBean.login}" label="Login" />
                             <p:message for="login" />
 
                             <h:outputLabel for="age" value="Senha: " />
-                            <p:password id="age" value="#{sessionBean.senha}" label="Age"/>
+                            <p:password id="age" value="#{sessionBean.senha}" label="Age" />
                             <p:message for="age" />
                         </h:panelGrid>
-                        <p:commandButton value="Entrar" update="growlLogin" action="#{sessionBean.logar()}" icon="ui-icon-circle-check" />
+                        <p:commandButton value="Entrar" update="growlLogin" 
+                                         action="#{sessionBean.logar()}" icon="ui-icon-circle-check" />
                     </p:panel>
                 </h:form>
             </div>
-            <div class="ui-grid-col-3"/>
+            <div class="ui-grid-col-4"/>
         </div>
     </div>
 </ui:composition>

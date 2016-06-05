@@ -13,7 +13,7 @@
             <p:ajax event="rowSelect" listener="#{pacienteBean.onRowSelect}" update="@(.dialogPaciente) @this" oncomplete="PF('dialogVisualizaPaciente').show()" />
 
             <f:facet name="header">
-                <h2>Pacientes</h2>
+                <p class="font-title">Pacientes</p>
             </f:facet>
             <p:column headerText="Nome" sortBy="#{paciente.nome}" filterBy="#{paciente.nome}" filterMatchMode="contains">
                 <h:outputText value="#{paciente.nome}" />
