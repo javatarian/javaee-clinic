@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="ui-grid ui-grid-responsive">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-12">
+                <h:form>  
+                    <p:growl id="messages"/>
+                    <p:menubar>
+                        <p:menuitem disabled="true" value="Teste." />
+                        <p:menuitem value="Dashboard" action="#{helperBean.redirecionaDashboard()}" icon="ui-icon-calendar" />
+                        <p:menuitem value="Consultas" action="#{helperBean.redirecionaConsultas()}"  icon="ui-icon-person"/>
+                        <f:facet name="options">
+                            <p:commandButton value="Sair" action="#{sessionBean.sair()}" icon="ui-icon-extlink" />
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </div>
+        </div>
+    </div>
+</ui:composition>
+

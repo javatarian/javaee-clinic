@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Dashboard</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+    </h:head>
+    <h:body>
+        <div id="header">
+            <ui:insert name="header">
+                <ui:include src="templates/header.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <div id="principal">
+            <ui:insert name="principal1">
+                <ui:include src="templates/area-dashboard-paciente.xhtml"/>
+            </ui:insert>
+            <ui:insert name="principal2">
+                <ui:include src="templates/area-dashboard-medico.xhtml"/>
+            </ui:insert><!--
+            <ui:insert name="principal3">
+                <ui:include src="templates/area-dashboard-secretaria.xhtml"/>
+            </ui:insert>-->
+        </div>
+    </h:body>
+</html>
+

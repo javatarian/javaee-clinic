@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog header="Cadastrar Médico" widgetVar="dialogCadastroMedico" closeOnEscape="true" draggable="false"
+              resizable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"/>
+                <div class="ui-grid-col-6">
+                    <h:form>
+                        <p:growl id="growlMedicoCadastro" life="2000" />
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <h:outputLabel for="nome" value="Nome:" />
+                            <p:inputText id="nome" value="#{medicoBean.medicoCadastrado.nome}" label="nome" required="true"/>
+                            <p:message for="nome" />
+
+                            <h:outputLabel for="rg" value="RG:" />
+                            <p:inputText id="rg" value="#{medicoBean.medicoCadastrado.rg}" label="rg"/>
+                            <p:message for="rg" />
+
+                            <h:outputLabel for="telefone" value="Telefone:" />
+                            <p:inputText id="telefone" value="#{medicoBean.medicoCadastrado.telefone}" label="telefone" required="true"/>
+                            <p:message for="telefone" />
+
+                            <h:outputLabel for="celular" value="Celular:" />
+                            <p:inputText id="celular" value="#{medicoBean.medicoCadastrado.celular}" label="celular" required="true"/>
+                            <p:message for="celular" />
+
+                            <h:outputLabel for="endereco" value="Endereço:" />
+                            <p:inputText id="endereco" value="#{medicoBean.medicoCadastrado.endereco}" label="endereco"/>
+                            <p:message for="endereco" />
+
+                            <h:outputLabel for="login" value="Login:" />
+                            <p:inputText id="login" value="#{medicoBean.medicoCadastrado.login}" label="login"/>
+                            <p:message for="login" />
+
+                            <h:outputLabel for="senha" value="Senha:" />
+                            <p:password id="senha" value="#{medicoBean.medicoCadastrado.senha}" label="senha"/>
+                            <p:message for="senha" />
+
+                            <h:outputLabel for="repeteSenha" value="Repete Senha:" />
+                            <p:password id="repeteSenha" value="a" label="repeteSenha"/>
+                            <p:message for="repeteSenha" />
+
+                            <h:outputLabel styleClass="espec" for="especialidades" value="Especialidades:" />
+                            <p:inputTextarea styleClass="espec" id="especialidades" value="#{medicoBean.medicoCadastrado.especialidades}" label="especialidades"/>
+                            <p:message styleClass="espec" for="especialidades" />
+
+                            <p:commandButton value="Cancelar" oncomplete="PF('dialogCadastroMedico').hide();" styleClass="ui-priority-primary"/>
+                            <p:commandButton value="Cadastrar" update="form-med:medicoTable growlMedicoCadastro" actionListener="#{medicoBean.cadastrarMedico()}" icon="ui-icon-check" validateClient="true"/>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+                <div class="ui-grid-col-3"/>
+            </div>
+        </div>
+    </p:dialog>  
+</ui:composition>
+

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui">
+    <p:dialog header="Detalhes do Médico" widgetVar="dialogVisualizaMedico" modal="true" draggable="false" 
+              showEffect="fade" hideEffect="fade" resizable="false" styleClass="dialogMedico">
+        <p:outputPanel id="medicoDetalhes" style="text-align:center;">
+            <h:form>
+                <p:growl id="growlMedicoVisualiza" life="2000" />
+
+                <p:inputText value="#{medicoBean.medicoSelecionado.id}" type="hidden"/>
+                <p:inputText value="#{medicoBean.medicoSelecionado.tipoAcesso}" type="hidden"/>
+
+                <p:panelGrid  columns="2" columnClasses="label,value">
+
+                    <h:outputText value="Nome: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.nome}" />
+
+                    <h:outputText value="RG " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.rg}" />
+
+                    <h:outputText value="Telefone: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.telefone}"/>
+
+                    <h:outputText value="Celular: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.celular}"/>
+
+                    <h:outputText value="Endereço: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.endereco}"/>
+
+                    <h:outputText value="Login: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.login}"/>
+
+                    <h:outputText value="Senha: " />
+                    <h:inputText value="#{medicoBean.medicoSelecionado.senha}"/>
+
+                    <h:outputText value="Especialidades: " />
+                    <p:inputTextarea value="#{medicoBean.medicoSelecionado.especialidades}"/>
+
+                    <p:commandButton value="Cancelar" onclick="PF('dialogVisualizaMedico').hide();" styleClass="ui-priority-primary"/>
+                    <p:commandButton value="Editar" update="form-med:medicoTable growlMedicoVisualiza" actionListener="#{medicoBean.editarMedico()}" icon="ui-icon-check" validateClient="true"/>          
+                </p:panelGrid>
+            </h:form>
+        </p:outputPanel>
+    </p:dialog>
+</ui:component>
+
