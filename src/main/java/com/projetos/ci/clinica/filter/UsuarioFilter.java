@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author gmatuella
  */
 @WebFilter(filterName = "UsuarioFilter", description = "Filtro dedicado ao controle dos usuários e seus respectivos acessos",
-        urlPatterns = {"/faces/dashboard.xhtml", "/faces/consultas.xhtml"})
+        urlPatterns = {"/faces/dashboard.xhtml", "/faces/consultas.xhtml", "/faces/analises.xhtml"})
 public class UsuarioFilter implements Filter {
 
     @Inject
@@ -38,7 +38,6 @@ public class UsuarioFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        System.out.println(req.getRequestURL().toString());
         if (session == null) {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/login.xhtml");
         } else if (!session.getLogado()) {

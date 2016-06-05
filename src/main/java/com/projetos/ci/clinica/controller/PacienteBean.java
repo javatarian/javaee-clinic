@@ -8,7 +8,6 @@ package com.projetos.ci.clinica.controller;
 import com.projetos.ci.clinica.entity.Paciente;
 import com.projetos.ci.clinica.service.PacienteService;
 import com.projetos.ci.clinica.util.ClinicaEntityManager;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -37,16 +36,18 @@ public class PacienteBean {
     }
 
     public void cadastrarPaciente() {
-        new PacienteService(new ClinicaEntityManager("ClinicaPU")).edit(pacienteCadastrado);
+        new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacienteCadastrado);
+        pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroPaciente').hide();");
         addMessage("Paciente cadastrado com sucesso!");
     }
     
     public void editarPaciente() {
-        new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacienteSelecionado);
+        new PacienteService(new ClinicaEntityManager("ClinicaPU")).edit(pacienteSelecionado);
+        pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogVisualizaMedico').hide();");
+        context.execute("PF('dialogVisualizaPaciente').hide();");
         addMessage("Paciente editado com sucesso!");
     }
 

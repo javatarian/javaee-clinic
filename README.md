@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/matuella/javaee-primefaces-clinica.svg?branch=master)](https://travis-ci.org/matuella/javaee-primefaces-clinica)
+
 # Clinica JavaEE
 ---
 

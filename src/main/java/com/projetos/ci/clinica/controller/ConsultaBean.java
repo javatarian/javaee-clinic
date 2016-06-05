@@ -11,8 +11,6 @@ import com.projetos.ci.clinica.entity.Paciente;
 import com.projetos.ci.clinica.service.ConsultaService;
 import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import java.io.Serializable;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;

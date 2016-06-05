@@ -5,9 +5,17 @@
  */
 package com.projetos.ci.clinica.controller;
 
+import com.projetos.ci.clinica.entity.Medico;
 import com.projetos.ci.clinica.entity.Paciente;
+import com.projetos.ci.clinica.entity.Secretaria;
+import com.projetos.ci.clinica.service.MedicoService;
+import com.projetos.ci.clinica.service.PacienteService;
+import com.projetos.ci.clinica.service.SecretariaService;
+import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -60,6 +68,60 @@ public class HelperBean {
 
     public String redirecionaConsultas() {
         return "consultas.xhtml?faces-redirect=true";
+    }
+
+    public String redirecionaAnalises() {
+        return "analises.xhtml?faces-redirect=true";
+    }
+
+    public String criarMedicos() {
+        for (int i = 0; i < 10; i++) {
+            int randomValue = new Random().nextInt(99999);
+            Medico medTeste = new Medico();
+            medTeste.setNome("Med " + randomValue);
+            medTeste.setRg("1234" + randomValue);
+            medTeste.setTelefone("(51) 444" + randomValue);
+            medTeste.setCelular("(51) 444" + randomValue);
+            medTeste.setEndereco("Av. Teste" + randomValue);
+            medTeste.setLogin("med" + randomValue);
+            medTeste.setSenha("med" + randomValue);
+            medTeste.setTipoAcesso("3");
+            medTeste.setStatus(true);
+            medTeste.setEspecialidades("Psicologia" + randomValue);
+            new MedicoService(new ClinicaEntityManager("ClinicaPU")).save(medTeste);
+        }
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String criarPacientes() {
+        for (int i = 0; i < 10; i++) {
+            int randomValue = new Random().nextInt(99999);
+            Paciente pacTeste = new Paciente();
+            pacTeste.setNome("Pac " + randomValue);
+            pacTeste.setTelefone("(51) 777" + randomValue);
+            pacTeste.setEndereco("Av. Test" + randomValue);
+            pacTeste.setDataNascimento(new Date());
+            new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacTeste);
+        }
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String criarSecretarias() {
+        for (int i = 0; i < 10; i++) {
+            int randomValue = new Random().nextInt(99999);
+            Secretaria secTeste = new Secretaria();
+            secTeste.setNome("Sec " + randomValue);
+            secTeste.setRg("1231" + randomValue);
+            secTeste.setTelefone("(51) 777" + randomValue);
+            secTeste.setCelular("(51) 777" + randomValue);
+            secTeste.setEndereco("Av. Test" + randomValue);
+            secTeste.setLogin("sec" + randomValue);
+            secTeste.setSenha("sec" + randomValue);
+            secTeste.setTipoAcesso("2");
+            secTeste.setStatus(true);
+            new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secTeste);
+        }
+        return "dashboard.xhtml?faces-redirect=true";
     }
 
     public void buttonAction(ActionEvent actionEvent) {

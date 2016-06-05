@@ -17,10 +17,10 @@ import javax.persistence.MappedSuperclass;
  * @author gmatuella
  */
 @MappedSuperclass
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
     private Long id;
     @Column(length = 100, nullable = false)
@@ -37,8 +37,10 @@ public class Usuario implements Serializable{
     private String login;
     @Column(length = 30, nullable = false)
     private String senha;
-    @Column(name= "tipo_acesso", length = 30, nullable = false)
+    @Column(name = "tipo_acesso", length = 30, nullable = false)
     private String tipoAcesso;
+    @Column(nullable = false)
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -110,6 +112,14 @@ public class Usuario implements Serializable{
 
     public void setTipoAcesso(String tipoAcesso) {
         this.tipoAcesso = tipoAcesso;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
 }

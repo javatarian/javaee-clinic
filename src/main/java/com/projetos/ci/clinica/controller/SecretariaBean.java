@@ -27,7 +27,7 @@ public class SecretariaBean {
 
     private Secretaria secretariaCadastrada, secretariaSelecionada;
     private List<Secretaria> secretarias, secretariasFiltradas;
-    
+
     @PostConstruct
     public void init() {
         secretariaCadastrada = new Secretaria();
@@ -36,17 +36,21 @@ public class SecretariaBean {
     }
 
     public void cadastrarSecretaria() {
-        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).edit(secretariaCadastrada);
+        secretariaCadastrada.setTipoAcesso("2");
+        secretariaCadastrada.setStatus(Boolean.TRUE);
+        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secretariaCadastrada);
+        secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroSecretaria').hide();");
-        addMessage("Secretaria cadastrada com sucesso!");
+        addMessage("Secretária cadastrada com sucesso!");
     }
-    
+
     public void editarSecretaria() {
-        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secretariaSelecionada);
+        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).edit(secretariaSelecionada);
+        secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogVisualizaMedico').hide();");
-        addMessage("Secretaria editada com sucesso!");
+        context.execute("PF('dialogVisualizaSecretaria').hide();");
+        addMessage("Secretária editada com sucesso!");
     }
 
     public void addMessage(String summary) {
@@ -55,5 +59,37 @@ public class SecretariaBean {
     }
 
     public void onRowSelect(SelectEvent event) {
+    }
+
+    public Secretaria getSecretariaCadastrada() {
+        return secretariaCadastrada;
+    }
+
+    public void setSecretariaCadastrada(Secretaria secretariaCadastrada) {
+        this.secretariaCadastrada = secretariaCadastrada;
+    }
+
+    public Secretaria getSecretariaSelecionada() {
+        return secretariaSelecionada;
+    }
+
+    public void setSecretariaSelecionada(Secretaria secretariaSelecionada) {
+        this.secretariaSelecionada = secretariaSelecionada;
+    }
+
+    public List<Secretaria> getSecretarias() {
+        return secretarias;
+    }
+
+    public void setSecretarias(List<Secretaria> secretarias) {
+        this.secretarias = secretarias;
+    }
+
+    public List<Secretaria> getSecretariasFiltradas() {
+        return secretariasFiltradas;
+    }
+
+    public void setSecretariasFiltradas(List<Secretaria> secretariasFiltradas) {
+        this.secretariasFiltradas = secretariasFiltradas;
     }
 }

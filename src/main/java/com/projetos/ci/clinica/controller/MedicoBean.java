@@ -37,7 +37,9 @@ public class MedicoBean {
 
     public void cadastrarMedico() {
         medicoCadastrado.setTipoAcesso("3");
+        medicoCadastrado.setStatus(Boolean.TRUE);
         new MedicoService(new ClinicaEntityManager("ClinicaPU")).save(medicoCadastrado);
+        medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroMedico').hide();");
         addMessage("Médico cadastrado com sucesso!");
@@ -45,6 +47,7 @@ public class MedicoBean {
 
     public void editarMedico() {
         new MedicoService(new ClinicaEntityManager("ClinicaPU")).edit(medicoSelecionado);
+        medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogVisualizaMedico').hide();");
         addMessage("Médico editado com sucesso!");
