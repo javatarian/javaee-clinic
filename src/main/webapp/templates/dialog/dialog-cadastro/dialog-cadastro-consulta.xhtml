@@ -16,9 +16,10 @@
 
                         <h:panelGrid columns="3" cellpadding="5">
                             <h:outputLabel for="paciente" value="Paciente:" />
-                            <p:selectOneMenu id="paciente" value="#{consultaBean.consultaCadastrada.paciente}">
+                            <p:selectOneMenu id="paciente" value="#{consultaBean.consultaCadastrada.paciente}"
+                                             converter="pacienteConverter">
                                 <f:selectItem itemLabel="Selecione o Paciente" noSelectionOption="true" />
-                                <f:selectItems var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente.id}" value="#{pacienteBean.pacientes}" />
+                                <f:selectItems var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente}" value="#{pacienteBean.pacientes}" />
                             </p:selectOneMenu>
                             <p:message for="paciente" />
 
@@ -26,7 +27,7 @@
                             <p:selectOneMenu id="medico" value="#{consultaBean.consultaCadastrada.medico}" 
                                              editable="true" converter="medicoConverter">
                                 <f:selectItem itemLabel="Selecione o Médico" noSelectionOption="true" />
-                                <f:selectItems var="medico" itemLabel="#{medico.nome}" itemValue="#{medico.id}" value="#{medicoBean.medicos}"/>
+                                <f:selectItems var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" value="#{medicoBean.medicos}"/>
                             </p:selectOneMenu>
                             <p:message for="medico" />
 

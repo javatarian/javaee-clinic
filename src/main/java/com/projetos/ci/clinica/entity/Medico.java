@@ -6,6 +6,7 @@
 package com.projetos.ci.clinica.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -44,4 +45,25 @@ public class Medico extends Usuario implements Serializable {
         this.especialidades = especialidades;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.especialidades);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Medico other = (Medico) obj;
+        if (!Objects.equals(this.especialidades, other.especialidades)) {
+            return false;
+        }
+        return true;
+    }
 }
