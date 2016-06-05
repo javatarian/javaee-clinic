@@ -2,18 +2,14 @@ package com.projetos.ci.clinica.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,11 +24,11 @@ public class Consulta implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_paciente", referencedColumnName = "id", nullable = false)
     private Paciente paciente;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "id_medico", referencedColumnName = "id", nullable = false)
     private Medico medico;
 
@@ -40,10 +36,9 @@ public class Consulta implements Serializable {
     private String planoDeSaude;
 
     @Column(name = "data_consulta", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dataConsulta;
+    private LocalDateTime dataConsulta;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Boolean compareceu;
 
     @Column(length = 1000, nullable = true)
@@ -81,16 +76,16 @@ public class Consulta implements Serializable {
         this.planoDeSaude = planoDeSaude;
     }
 
-    public Date getDataConsulta() {
+    public Boolean getCompareceu() {
+        return compareceu;
+    }
+
+    public LocalDateTime getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(Date dataConsulta) {
+    public void setDataConsulta(LocalDateTime dataConsulta) {
         this.dataConsulta = dataConsulta;
-    }
-    
-    public Boolean getCompareceu() {
-        return compareceu;
     }
 
     public void setCompareceu(Boolean compareceu) {
@@ -109,7 +104,7 @@ public class Consulta implements Serializable {
 
     }
 
-    public Consulta(Long id, Paciente paciente, Medico medico, String planoDeSaude, Date dataConsulta) {
+    public Consulta(Long id, Paciente paciente, Medico medico, String planoDeSaude, LocalDateTime dataConsulta) {
         this.id = id;
         this.paciente = paciente;
         this.medico = medico;

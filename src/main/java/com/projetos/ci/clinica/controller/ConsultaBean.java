@@ -11,6 +11,7 @@ import com.projetos.ci.clinica.entity.Paciente;
 import com.projetos.ci.clinica.service.ConsultaService;
 import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -33,60 +34,26 @@ public class ConsultaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private List<Consulta> consultas;
-    private List<Consulta> consultasRealizadas;
-    private List<Consulta> consultasFiltradas;
-    private Consulta consultaSelecionada;
-    private Consulta consultaCadastrada;
-    private ConsultaService service;
+    private Consulta consultaSelecionada, consultaCadastrada;
+    private List<Consulta> consultas, consultasRealizadas, consultasFiltradas;
     private String testeString;
+    private LocalDateTime testeldt;
 
     @PostConstruct
     public void init() {
         this.consultaCadastrada = new Consulta();
-        Paciente testeP = new Paciente(1L, "Roberto Car Loss", "(51) 23456781");
-        Paciente testeP2 = new Paciente(2L, "Evil Edson Arantes of Birth", "(51) 32211451");
-        Medico testeM = new Medico();
-        testeM.setId(1L);
-        testeM.setNome("Thomas Eddie Son");
-        Medico testeM2 = new Medico();
-        testeM2.setId(2L);
-        testeM2.setNome("Mark Is Man");
-//        Consulta testeC = new Consulta(1L, testeP, testeM, "Multimed", LocalDateTime.now());
-//        Consulta testeC2 = new Consulta(2L, testeP2, testeM2, "IFGB", LocalDateTime.now());
-        Consulta testeC = new Consulta(1L, testeP, testeM, "Multimed", new Date());
-        Consulta testeC2 = new Consulta(2L, testeP2, testeM2, "IFGB", new Date());
-        consultas = new ArrayList();
-        consultas.add(testeC);
-        consultas.add(testeC);
-        consultas.add(testeC);
-        consultas.add(testeC2);
-        consultas.add(testeC);
-        consultas.add(testeC2);
-        consultas.add(testeC2);
-        consultas.add(testeC);
-        consultasRealizadas = new ArrayList();
-        consultas.add(testeC2);
-        consultas.add(testeC);
-//        service = new ConsultaService(new ClinicaEntityManager("ClinicaPU"));
-//        consultas = new ConsultaLazyDataModel(service.findAll());
+        this.consultaSelecionada = new Consulta();
+        consultas = new ConsultaService(new ClinicaEntityManager("ClinicaPU")).findAll();
     }
 
     public void cadastrarConsulta() {
-//        consultaCadastrada.setDataConsulta(LocalDateTime.now());
-        consultaCadastrada.setDataConsulta(new Date());
-        consultaCadastrada.setId(3L);
-        consultas.add(consultaCadastrada);
-        this.consultaCadastrada = new Consulta();
+        consultaCadastrada.setCompareceu(Boolean.FALSE);
+        new ConsultaService(new ClinicaEntityManager("ClinicaPU")).save(consultaCadastrada);
+        consultas = new ConsultaService(new ClinicaEntityManager("ClinicaPU")).findAll();
         
-        service = new ConsultaService(new ClinicaEntityManager("ClinicaPU"));
-        service.save(consultaCadastrada);
-
         RequestContext requestContext = RequestContext.getCurrentInstance();
-
-        requestContext.update(":form-cons");
         requestContext.execute("PF('dialogCadastroConsulta').hide()");
-        addMessage("Consulta Cadastrada!");
+        addMessage("Consulta cadastrada com sucesso!");
     }
 
     public void deletarConsulta(){
@@ -160,4 +127,11 @@ public class ConsultaBean implements Serializable {
         this.consultasRealizadas = consultasRealizadas;
     }
 
+    public LocalDateTime getTesteldt() {
+        return testeldt;
+    }
+
+    public void setTesteldt(LocalDateTime testeldt) {
+        this.testeldt = testeldt;
+    }
 }

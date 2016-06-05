@@ -15,23 +15,24 @@
                         <p:growl id="growlConsulta" life="2000" />
 
                         <h:panelGrid columns="3" cellpadding="5">
-                            <!--                                                        <h:outputLabel for="paciente" value="Paciente:" />
-                                                                                    <p:selectOneMenu id="paciente" value="#{consultaBean.consultaCadastrada.paciente}">
-                                                                                        <f:selectItem itemLabel="Selecione o Paciente" itemValue="" noSelectionOption="true" />
-                                                                                        <f:selectItems var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente}"value="#{pacienteBean.listaPacientes()}" />
-                                                                                    </p:selectOneMenu>
-                                                                                    <p:message for="paciente" />
-                                                        
-                            -->                                                     <h:outputLabel for="medico" value="Médico:" />
-                            <p:selectOneMenu id="medico" value="#{consultaBean.consultaCadastrada.medico}" editable="true">
-                                <f:selectItem itemLabel="Selecione o Médico" itemValue="" noSelectionOption="true" />
-                                <f:selectItems var="medico" itemLabel="#{medico.nome}" itemValue="#{medico}" value="#{medicoBean.medicos}" />
+                            <h:outputLabel for="paciente" value="Paciente:" />
+                            <p:selectOneMenu id="paciente" value="#{consultaBean.consultaCadastrada.paciente}">
+                                <f:selectItem itemLabel="Selecione o Paciente" noSelectionOption="true" />
+                                <f:selectItems var="paciente" itemLabel="#{paciente.nome}" itemValue="#{paciente.id}" value="#{pacienteBean.pacientes}" />
+                            </p:selectOneMenu>
+                            <p:message for="paciente" />
+
+                            <h:outputLabel for="medico" value="Médico:" />
+                            <p:selectOneMenu id="medico" value="#{consultaBean.consultaCadastrada.medico}" 
+                                             editable="true" converter="medicoConverter">
+                                <f:selectItem itemLabel="Selecione o Médico" noSelectionOption="true" />
+                                <f:selectItems var="medico" itemLabel="#{medico.nome}" itemValue="#{medico.id}" value="#{medicoBean.medicos}"/>
                             </p:selectOneMenu>
                             <p:message for="medico" />
 
-                            <p:outputLabel value="Paciente:" for="paciente" />
-                            <p:autoComplete id="paciente" dropdown="true" value="#{consultaBean.testeString}" completeMethod="#{helperBean.completeText}" />
-                            <p:message for="paciente"/>
+                            <!--                            <p:outputLabel value="Paciente:" for="paciente" />
+                                                        <p:autoComplete id="paciente" dropdown="true" value="#{consultaBean.testeString}" completeMethod="#{helperBean.completeText}" />
+                                                        <p:message for="paciente"/>-->
 
                             <h:outputLabel for="planoDeSaude" value="Plano de saude:" />
                             <p:inputText id="planoDeSaude" value="#{consultaBean.consultaCadastrada.planoDeSaude}" label="planoDeSaude" 
@@ -41,14 +42,11 @@
                             <p:message for="planoDeSaude" />
 
                             <h:outputLabel for="dataConsulta" value="Data da Consulta:" />
-                            <p:calendar id="dataConsulta" value="#{calendarView.dataConsulta}" pattern="MM/dd/yyyy" />
-    <!--                            <p:calendar id="dataConsulta" value="#{consultaBean.consultaCadastrada.dataConsulta}" label="planoDeSaude" 
-                                         required="true" requiredMessage="Data da Consulta é obrigatória!"/>-->
+                            <p:calendar id="dataConsulta" converter="localDateTimeConverter" style="width: 100%;"
+                                        readonly="true" navigator="true" pattern="dd-MM-yyyy HH:mm" required="true" 
+                                        requiredMessage="Data da Consulta é obrigatória!"
+                                        value="#{consultaBean.consultaCadastrada.dataConsulta}"/>
                             <p:message for="dataConsulta" />
-
-                            <p:outputLabel for="horarioConsulta" value="Horário da Consulta:" />
-                            <p:calendar id="horarioConsulta" value="#{calendarView.horarioConsulta}" pattern="HH:mm" timeOnly="true"  />
-                            <p:message for="horarioConsulta" />
 
                             <p:commandButton value="Cancelar" onclick="PF('dialogCadastroConsulta').hide();" styleClass="ui-priority-primary"/>
                             <p:commandButton value="Cadastrar" update=":form-cons growlConsulta" actionListener="#{consultaBean.cadastrarConsulta()}" id="ajax" icon="ui-icon-check" validateClient="true"/>          
