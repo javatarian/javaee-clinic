@@ -43,10 +43,10 @@ public class HelperBean {
 //            }
 //        }
         List<Paciente> listaTeste = new ArrayList();
-        listaTeste.add(new Paciente(1L, "Teste 1", "51515151"));
-        listaTeste.add(new Paciente(2L, "Aeste 1", "51515151"));
-        listaTeste.add(new Paciente(3L, "Oreste 1", "51515151"));
-        listaTeste.add(new Paciente(4L, "Moleque 1", "51515151"));
+//        listaTeste.add(new Paciente(1L, "Teste 1", "51515151"));
+//        listaTeste.add(new Paciente(2L, "Aeste 1", "51515151"));
+//        listaTeste.add(new Paciente(3L, "Oreste 1", "51515151"));
+//        listaTeste.add(new Paciente(4L, "Moleque 1", "51515151"));
         for (Paciente p : listaTeste) {
             if ((p.getNome().toLowerCase()).contains(query.toLowerCase())) {
                 results.add(p.getNome());

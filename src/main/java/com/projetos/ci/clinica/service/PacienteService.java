@@ -69,4 +69,8 @@ public class PacienteService {
     public List<Paciente> findAll() {
         return dao.findAll();
     }
+
+    public Paciente findPaciente(Long id) {
+        return dao.getById(id);
+    }
 }

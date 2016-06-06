@@ -6,6 +6,9 @@
 package com.projetos.ci.clinica.converter;
 
 import com.projetos.ci.clinica.entity.Paciente;
+import com.projetos.ci.clinica.service.MedicoService;
+import com.projetos.ci.clinica.service.PacienteService;
+import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.FacesConverter;
@@ -21,9 +24,8 @@ public class PacienteConverter implements javax.faces.convert.Converter {
     public Object getAsObject(FacesContext ctx, UIComponent component,
             String value) {
         if (value != null && !value.isEmpty()) {
-            return (Paciente) component.getAttributes().get(value);
+            return new PacienteService(new ClinicaEntityManager("ClinicaPU")).findPaciente(new Long(value));
         }
-//        return new MedicoService(new ClinicaEntityManager("ClinicaPU")).findMedico(new Long(value));
         return null;
     }
 
@@ -32,7 +34,6 @@ public class PacienteConverter implements javax.faces.convert.Converter {
         if (o instanceof Paciente) {
             Paciente paciente = (Paciente) o;
             if (paciente != null && paciente instanceof Paciente && paciente.getId() != null) {
-//                uiComponent.getAttributes().put(entity.getId().toString(), entity);
                 return String.valueOf(paciente.getId());
             }
         }

@@ -6,6 +6,7 @@
 package com.projetos.ci.clinica.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -120,6 +121,69 @@ public class Usuario implements Serializable {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.rg);
+        hash = 53 * hash + Objects.hashCode(this.telefone);
+        hash = 53 * hash + Objects.hashCode(this.celular);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 53 * hash + Objects.hashCode(this.login);
+        hash = 53 * hash + Objects.hashCode(this.senha);
+        hash = 53 * hash + Objects.hashCode(this.tipoAcesso);
+        hash = 53 * hash + Objects.hashCode(this.status);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.rg, other.rg)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.celular, other.celular)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipoAcesso, other.tipoAcesso)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", rg=" + rg + ", telefone=" + telefone + ", celular=" + celular + ", endereco=" + endereco + ", login=" + login + ", senha=" + senha + ", tipoAcesso=" + tipoAcesso + ", status=" + status + '}';
     }
 
 }

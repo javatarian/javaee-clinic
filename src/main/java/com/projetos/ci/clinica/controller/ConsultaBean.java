@@ -43,9 +43,11 @@ public class ConsultaBean implements Serializable {
     }
 
     public void cadastrarConsulta() {
+        System.out.println(consultaCadastrada);
         consultaCadastrada.setCompareceu(Boolean.FALSE);
         new ConsultaService(new ClinicaEntityManager("ClinicaPU")).save(consultaCadastrada);
         consultas = new ConsultaService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        
         
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.execute("PF('dialogCadastroConsulta').hide()");

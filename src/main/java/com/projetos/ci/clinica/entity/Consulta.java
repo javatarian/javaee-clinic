@@ -2,6 +2,7 @@ package com.projetos.ci.clinica.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -43,6 +44,10 @@ public class Consulta implements Serializable {
 
     @Column(length = 1000, nullable = true)
     private String observacoes;
+
+    public Consulta() {
+
+    }
 
     public Long getId() {
         return id;
@@ -100,15 +105,54 @@ public class Consulta implements Serializable {
         this.observacoes = observacoes;
     }
 
-    public Consulta() {
-
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.paciente);
+        hash = 37 * hash + Objects.hashCode(this.medico);
+        hash = 37 * hash + Objects.hashCode(this.planoDeSaude);
+        hash = 37 * hash + Objects.hashCode(this.dataConsulta);
+        hash = 37 * hash + Objects.hashCode(this.compareceu);
+        hash = 37 * hash + Objects.hashCode(this.observacoes);
+        return hash;
     }
 
-    public Consulta(Long id, Paciente paciente, Medico medico, String planoDeSaude, LocalDateTime dataConsulta) {
-        this.id = id;
-        this.paciente = paciente;
-        this.medico = medico;
-        this.planoDeSaude = planoDeSaude;
-        this.dataConsulta = dataConsulta;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consulta other = (Consulta) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.paciente, other.paciente)) {
+            return false;
+        }
+        if (!Objects.equals(this.medico, other.medico)) {
+            return false;
+        }
+        if (!Objects.equals(this.planoDeSaude, other.planoDeSaude)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataConsulta, other.dataConsulta)) {
+            return false;
+        }
+        if (!Objects.equals(this.compareceu, other.compareceu)) {
+            return false;
+        }
+        if (!Objects.equals(this.observacoes, other.observacoes)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Consulta{" + "id=" + id + ", pacienteId=" + paciente.getId() + ", medicoId=" + medico.getId() + ", planoDeSaude=" + planoDeSaude + ", dataConsulta=" + dataConsulta + ", compareceu=" + compareceu + ", observacoes=" + observacoes + '}';
     }
 }

@@ -19,6 +19,9 @@ import javax.persistence.Table;
 @Table(name = "medico")
 public class Medico extends Usuario implements Serializable {
 
+    //Código que posteriormente poderá ser utilizado para refatorar a ideia das
+    //especialidades de um médico.
+    //
 //    @ElementCollection
 //    @CollectionTable(name = "Especialidades", joinColumns = @JoinColumn(name = "id"))
 //    @Column(name = "especialidade")
@@ -66,4 +69,10 @@ public class Medico extends Usuario implements Serializable {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return super.toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

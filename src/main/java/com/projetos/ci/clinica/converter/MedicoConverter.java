@@ -23,9 +23,8 @@ public class MedicoConverter implements javax.faces.convert.Converter {
     public Object getAsObject(FacesContext ctx, UIComponent component,
             String value) {
         if (value != null && !value.isEmpty()) {
-            return (Medico) component.getAttributes().get(value);
+            return new MedicoService(new ClinicaEntityManager("ClinicaPU")).findMedico(new Long(value));
         }
-//        return new MedicoService(new ClinicaEntityManager("ClinicaPU")).findMedico(new Long(value));
         return null;
     }
 
@@ -34,7 +33,6 @@ public class MedicoConverter implements javax.faces.convert.Converter {
         if (o instanceof Medico) {
             Medico medico = (Medico) o;
             if (medico != null && medico instanceof Medico && medico.getId() != null) {
-//                uiComponent.getAttributes().put(entity.getId().toString(), entity);
                 return String.valueOf(medico.getId());
             }
         }
