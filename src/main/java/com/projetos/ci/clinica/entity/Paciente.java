@@ -41,6 +41,14 @@ public class Paciente implements Serializable {
     public Paciente() {
     }
 
+    public Paciente(Long id, String nome, String endereco, String telefone, Date dataNascimento) {
+        this.id = id;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.dataNascimento = dataNascimento;
+    }
+
     public Long getId() {
         return id;
     }

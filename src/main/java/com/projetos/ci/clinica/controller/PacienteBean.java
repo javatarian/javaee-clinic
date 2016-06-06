@@ -38,6 +38,8 @@ public class PacienteBean {
     public void cadastrarPaciente() {
         new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacienteCadastrado);
         pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        pacienteCadastrado = new Paciente();
+        
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroPaciente').hide();");
         addMessage("Paciente cadastrado com sucesso!");

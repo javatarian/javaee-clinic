@@ -30,11 +30,9 @@ public class MedicoConverter implements javax.faces.convert.Converter {
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
-        if (o instanceof Medico) {
+        if (o != null && o instanceof Medico) {
             Medico medico = (Medico) o;
-            if (medico != null && medico instanceof Medico && medico.getId() != null) {
-                return String.valueOf(medico.getId());
-            }
+            return String.valueOf(medico.getId());
         }
         return "";
     }

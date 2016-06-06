@@ -48,7 +48,7 @@
                             <p:message for="dataConsulta" />
 
                             <p:commandButton value="Cancelar" onclick="PF('dialogCadastroConsulta').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Cadastrar" update=":form-cons growlConsulta" actionListener="#{consultaBean.cadastrarConsulta()}" id="ajax" icon="ui-icon-check" validateClient="true"/>          
+                            <p:commandButton value="Cadastrar" update=":form-cons growlConsulta @form" actionListener="#{consultaBean.cadastrarConsulta()}" id="ajax" icon="ui-icon-check" validateClient="true"/>          
                         </h:panelGrid>
                     </h:form>
                 </div>

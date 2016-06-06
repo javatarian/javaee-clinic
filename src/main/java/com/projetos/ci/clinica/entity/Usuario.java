@@ -43,6 +43,22 @@ public class Usuario implements Serializable {
     @Column(nullable = false)
     private Boolean status;
 
+    public Usuario() {
+    }
+
+    public Usuario(Long id, String nome, String rg, String telefone, String celular, String endereco, String login, String senha, String tipoAcesso, Boolean status) {
+        this.id = id;
+        this.nome = nome;
+        this.rg = rg;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.endereco = endereco;
+        this.login = login;
+        this.senha = senha;
+        this.tipoAcesso = tipoAcesso;
+        this.status = status;
+    }
+    
     public Long getId() {
         return id;
     }

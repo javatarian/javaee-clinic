@@ -13,7 +13,7 @@
                     <p:menubar styleClass="em-130">
                         <p:menuitem value="Dashboard" action="#{helperBean.redirecionaDashboard()}" icon="ui-icon-calendar" />
                         <p:menuitem value="Consultas" action="#{helperBean.redirecionaConsultas()}"  icon="ui-icon-person"/>
-                        <p:menuitem value="Análise" action="#{helperBean.redirecionaAnalises()}"  icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Análise" rendered="#{sessionBean.isAdmin()}" action="#{helperBean.redirecionaAnalises()}"  icon="ui-icon-clipboard"/>
                         <f:facet name="options">
                             <p:commandButton value="Sair" action="#{sessionBean.sair()}" icon="ui-icon-extlink" />
                         </f:facet>

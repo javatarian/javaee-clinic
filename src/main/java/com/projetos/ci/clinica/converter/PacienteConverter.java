@@ -31,11 +31,9 @@ public class PacienteConverter implements javax.faces.convert.Converter {
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
-        if (o instanceof Paciente) {
+        if (o != null && o instanceof Paciente) {
             Paciente paciente = (Paciente) o;
-            if (paciente != null && paciente instanceof Paciente && paciente.getId() != null) {
-                return String.valueOf(paciente.getId());
-            }
+            return String.valueOf(paciente.getId());
         }
         return "";
     }

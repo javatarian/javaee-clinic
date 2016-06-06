@@ -19,10 +19,10 @@
             <ui:insert name="principal1">
                 <ui:include src="templates/area-dashboard-paciente.xhtml"/>
             </ui:insert>
-            <ui:insert name="principal2">
+            <ui:insert name="principal2" rendered="#{sessionBean.isAdmin()}">
                 <ui:include src="templates/area-dashboard-medico.xhtml"/>
             </ui:insert>
-            <ui:insert name="principal3">
+            <ui:insert name="principal3" rendered="#{sessionBean.isAdmin()}">
                 <ui:include src="templates/area-dashboard-secretaria.xhtml"/>
             </ui:insert>
         </div>

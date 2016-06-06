@@ -52,7 +52,7 @@
                             <p:message styleClass="espec" for="especialidades" />
 
                             <p:commandButton value="Cancelar" oncomplete="PF('dialogCadastroMedico').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Cadastrar" update="form-med:medicoTable growlMedicoCadastro" actionListener="#{medicoBean.cadastrarMedico()}" icon="ui-icon-check" validateClient="true"/>
+                            <p:commandButton value="Cadastrar" update="form-med:medicoTable growlMedicoCadastro @form" actionListener="#{medicoBean.cadastrarMedico()}" icon="ui-icon-check" validateClient="true"/>
                         </h:panelGrid>
                     </h:form>
                 </div>

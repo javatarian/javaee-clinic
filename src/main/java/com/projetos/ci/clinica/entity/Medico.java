@@ -40,6 +40,11 @@ public class Medico extends Usuario implements Serializable {
     public Medico() {
     }
 
+    public Medico(String especialidades, Long id, String nome, String rg, String telefone, String celular, String endereco, String login, String senha, String tipoAcesso, Boolean status) {
+        super(id, nome, rg, telefone, celular, endereco, login, senha, tipoAcesso, status);
+        this.especialidades = especialidades;
+    }
+
     public String getEspecialidades() {
         return especialidades;
     }

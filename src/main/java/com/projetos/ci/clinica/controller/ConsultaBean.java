@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -25,7 +25,7 @@ import org.primefaces.event.SelectEvent;
  * @author gmatuella
  */
 @Named
-@ViewScoped
+@RequestScoped
 public class ConsultaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,8 +37,8 @@ public class ConsultaBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.consultaCadastrada = new Consulta();
-        this.consultaSelecionada = new Consulta();
+        consultaCadastrada = new Consulta();
+        consultaSelecionada = new Consulta();
         consultas = new ConsultaService(new ClinicaEntityManager("ClinicaPU")).findAll();
     }
 
@@ -47,19 +47,19 @@ public class ConsultaBean implements Serializable {
         consultaCadastrada.setCompareceu(Boolean.FALSE);
         new ConsultaService(new ClinicaEntityManager("ClinicaPU")).save(consultaCadastrada);
         consultas = new ConsultaService(new ClinicaEntityManager("ClinicaPU")).findAll();
-        
-        
+        consultaCadastrada = new Consulta();
+
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.execute("PF('dialogCadastroConsulta').hide()");
         addMessage("Consulta cadastrada com sucesso!");
     }
 
-    public void deletarConsulta(){
+    public void deletarConsulta() {
         //Verificar se é 24 horas antes. Se for, deletar diretamente do banco.
     }
 
-    public void editarConsulta(){
-        
+    public void editarConsulta() {
+
     }
 
     public void abrirConsulta(Consulta consulta) {
@@ -117,7 +117,7 @@ public class ConsultaBean implements Serializable {
         this.consultasFiltradas = consultasFiltradas;
     }
 
-        public List<Consulta> getConsultasRealizadas() {
+    public List<Consulta> getConsultasRealizadas() {
         return consultasRealizadas;
     }
 

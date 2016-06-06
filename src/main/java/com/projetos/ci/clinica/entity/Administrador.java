@@ -17,4 +17,11 @@ import javax.persistence.Table;
 @Table(name = "administrador")
 public class Administrador extends Usuario implements Serializable {
 
+    public Administrador() {
+    }
+
+    public Administrador(Long id, String nome, String rg, String telefone, String celular, String endereco, String login, String senha, String tipoAcesso, Boolean status) {
+        super(id, nome, rg, telefone, celular, endereco, login, senha, tipoAcesso, status);
+    }
+
 }

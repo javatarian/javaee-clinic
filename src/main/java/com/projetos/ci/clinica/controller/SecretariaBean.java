@@ -40,6 +40,8 @@ public class SecretariaBean {
         secretariaCadastrada.setStatus(Boolean.TRUE);
         new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secretariaCadastrada);
         secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        secretariaCadastrada = new Secretaria();
+        
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroSecretaria').hide();");
         addMessage("Secretária cadastrada com sucesso!");

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,11 +26,11 @@ public class Consulta implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_paciente", referencedColumnName = "id", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_medico", referencedColumnName = "id", nullable = false)
     private Medico medico;
 
@@ -47,6 +48,16 @@ public class Consulta implements Serializable {
 
     public Consulta() {
 
+    }
+
+    public Consulta(Long id, Paciente paciente, Medico medico, String planoDeSaude, LocalDateTime dataConsulta, Boolean compareceu, String observacoes) {
+        this.id = id;
+        this.paciente = paciente;
+        this.medico = medico;
+        this.planoDeSaude = planoDeSaude;
+        this.dataConsulta = dataConsulta;
+        this.compareceu = compareceu;
+        this.observacoes = observacoes;
     }
 
     public Long getId() {

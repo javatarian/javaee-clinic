@@ -42,7 +42,7 @@
                             <p:message for="dataNascimento" />
 
                             <p:commandButton value="Cancelar" onclick="PF('dialogCadastroPaciente').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Cadastrar" update="form-pac:pacienteTable growlPacienteCadastro" actionListener="#{pacienteBean.cadastrarPaciente()}" icon="ui-icon-check" validateClient="true"/>          
+                            <p:commandButton value="Cadastrar" update="form-pac:pacienteTable growlPacienteCadastro @form" actionListener="#{pacienteBean.cadastrarPaciente()}" icon="ui-icon-check" validateClient="true"/>          
                         </h:panelGrid>
                     </h:form>
                 </div>

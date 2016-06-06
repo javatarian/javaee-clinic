@@ -40,6 +40,7 @@ public class MedicoBean {
         medicoCadastrado.setStatus(Boolean.TRUE);
         new MedicoService(new ClinicaEntityManager("ClinicaPU")).save(medicoCadastrado);
         medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        medicoSelecionado = new Medico();
         
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogCadastroMedico').hide();");

@@ -83,6 +83,10 @@ public class SessionBean implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
+    public boolean isAdmin() {
+        return administrador != null;
+    }
+
     public String getLogin() {
         return login;
     }
