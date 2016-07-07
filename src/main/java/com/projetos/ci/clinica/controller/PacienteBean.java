@@ -32,12 +32,12 @@ public class PacienteBean {
     public void init() {
         pacienteCadastrado = new Paciente();
         pacienteSelecionado = new Paciente();
-        pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        pacientes = new PacienteService().findAll();
     }
 
     public void cadastrarPaciente() {
-        new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacienteCadastrado);
-        pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new PacienteService().save(pacienteCadastrado);
+        pacientes = new PacienteService().findAll();
         pacienteCadastrado = new Paciente();
         
         RequestContext context = RequestContext.getCurrentInstance();
@@ -46,8 +46,8 @@ public class PacienteBean {
     }
     
     public void editarPaciente() {
-        new PacienteService(new ClinicaEntityManager("ClinicaPU")).edit(pacienteSelecionado);
-        pacientes = new PacienteService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new PacienteService().update(pacienteSelecionado);
+        pacientes = new PacienteService().findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogVisualizaPaciente').hide();");
         addMessage("Paciente editado com sucesso!");

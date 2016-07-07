@@ -24,7 +24,7 @@ public class PacienteConverter implements javax.faces.convert.Converter {
     public Object getAsObject(FacesContext ctx, UIComponent component,
             String value) {
         if (value != null && !value.isEmpty()) {
-            return new PacienteService(new ClinicaEntityManager("ClinicaPU")).findPaciente(new Long(value));
+            return new PacienteService().findById(new Long(value));
         }
         return null;
     }

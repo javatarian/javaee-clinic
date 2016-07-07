@@ -23,7 +23,7 @@ public class MedicoConverter implements javax.faces.convert.Converter {
     public Object getAsObject(FacesContext ctx, UIComponent component,
             String value) {
         if (value != null && !value.isEmpty()) {
-            return new MedicoService(new ClinicaEntityManager("ClinicaPU")).findMedico(new Long(value));
+            return new MedicoService().findById(new Long(value));
         }
         return null;
     }

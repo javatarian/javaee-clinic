@@ -1,3 +1,5 @@
 nb-configuration.xml
 nb_jr_remoting.cfg
 target/
+.idea/
+Clinica.iml

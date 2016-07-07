@@ -88,7 +88,7 @@ public class HelperBean {
             medTeste.setTipoAcesso("3");
             medTeste.setStatus(true);
             medTeste.setEspecialidades("Psicologia" + randomValue);
-            new MedicoService(new ClinicaEntityManager("ClinicaPU")).save(medTeste);
+            new MedicoService().save(medTeste);
         }
         return "dashboard.xhtml?faces-redirect=true";
     }
@@ -101,7 +101,7 @@ public class HelperBean {
             pacTeste.setTelefone("(51) 777" + randomValue);
             pacTeste.setEndereco("Av. Test" + randomValue);
             pacTeste.setDataNascimento(new Date());
-            new PacienteService(new ClinicaEntityManager("ClinicaPU")).save(pacTeste);
+            new PacienteService().save(pacTeste);
         }
         return "dashboard.xhtml?faces-redirect=true";
     }
@@ -119,7 +119,7 @@ public class HelperBean {
             secTeste.setSenha("sec" + randomValue);
             secTeste.setTipoAcesso("2");
             secTeste.setStatus(true);
-            new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secTeste);
+            new SecretariaService().save(secTeste);
         }
         return "dashboard.xhtml?faces-redirect=true";
     }

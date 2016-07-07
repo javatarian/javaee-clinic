@@ -32,14 +32,14 @@ public class MedicoBean {
     public void init() {
         medicoCadastrado = new Medico();
         medicoSelecionado = new Medico();
-        medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        medicos = new MedicoService().findAll();
     }
 
     public void cadastrarMedico() {
         medicoCadastrado.setTipoAcesso("3");
         medicoCadastrado.setStatus(Boolean.TRUE);
-        new MedicoService(new ClinicaEntityManager("ClinicaPU")).save(medicoCadastrado);
-        medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new MedicoService().save(medicoCadastrado);
+        medicos = new MedicoService().findAll();
         medicoSelecionado = new Medico();
         
         RequestContext context = RequestContext.getCurrentInstance();
@@ -48,8 +48,8 @@ public class MedicoBean {
     }
 
     public void editarMedico() {
-        new MedicoService(new ClinicaEntityManager("ClinicaPU")).edit(medicoSelecionado);
-        medicos = new MedicoService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new MedicoService().update(medicoSelecionado);
+        medicos = new MedicoService().findAll();
         
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogVisualizaMedico').hide();");
@@ -57,7 +57,7 @@ public class MedicoBean {
     }
 
     public void deletarMedico() {
-        new MedicoService(new ClinicaEntityManager("ClinicaPU")).remove(medicoSelecionado);
+        new MedicoService().delete(medicoSelecionado);
     }
     
 //    public void listarMedicos() {

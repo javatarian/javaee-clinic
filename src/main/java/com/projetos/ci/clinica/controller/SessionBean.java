@@ -11,7 +11,6 @@ import com.projetos.ci.clinica.entity.Secretaria;
 import com.projetos.ci.clinica.service.AdministradorService;
 import com.projetos.ci.clinica.service.MedicoService;
 import com.projetos.ci.clinica.service.SecretariaService;
-import com.projetos.ci.clinica.util.ClinicaEntityManager;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -45,7 +44,7 @@ public class SessionBean implements Serializable {
     }
 
     public String logar() {
-        SecretariaService secService = new SecretariaService(new ClinicaEntityManager("ClinicaPU"));
+        SecretariaService secService = new SecretariaService();
         for (Secretaria secretariaRegistrada : secService.findAll()) {
             if (secretariaRegistrada.getLogin().equals(login) && secretariaRegistrada.getSenha().equals(senha)) {
                 secretaria = secretariaRegistrada;
@@ -53,7 +52,7 @@ public class SessionBean implements Serializable {
                 return "consultas.xhtml?faces-redirect=true";
             }
         }
-        MedicoService medService = new MedicoService(new ClinicaEntityManager("ClinicaPU"));
+        MedicoService medService = new MedicoService();
         for (Medico medicoRegistrado : medService.findAll()) {
             if (medicoRegistrado.getLogin().equals(login) && medicoRegistrado.getSenha().equals(senha)) {
                 medico = medicoRegistrado;
@@ -61,7 +60,7 @@ public class SessionBean implements Serializable {
                 return "consultas.xhtml?faces-redirect=true";
             }
         }
-        AdministradorService admService = new AdministradorService(new ClinicaEntityManager("ClinicaPU"));
+        AdministradorService admService = new AdministradorService();
         for (Administrador administradorRegistrado : admService.findAll()) {
             if (administradorRegistrado.getLogin().equals(login) && administradorRegistrado.getSenha().equals(senha)) {
                 administrador = administradorRegistrado;

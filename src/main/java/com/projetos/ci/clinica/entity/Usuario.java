@@ -21,7 +21,7 @@ import javax.persistence.MappedSuperclass;
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
     @Column(length = 100, nullable = false)

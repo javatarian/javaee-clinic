@@ -32,14 +32,14 @@ public class SecretariaBean {
     public void init() {
         secretariaCadastrada = new Secretaria();
         secretariaSelecionada = new Secretaria();
-        secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        secretarias = new SecretariaService().findAll();
     }
 
     public void cadastrarSecretaria() {
         secretariaCadastrada.setTipoAcesso("2");
         secretariaCadastrada.setStatus(Boolean.TRUE);
-        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).save(secretariaCadastrada);
-        secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new SecretariaService().save(secretariaCadastrada);
+        secretarias = new SecretariaService().findAll();
         secretariaCadastrada = new Secretaria();
         
         RequestContext context = RequestContext.getCurrentInstance();
@@ -48,8 +48,8 @@ public class SecretariaBean {
     }
 
     public void editarSecretaria() {
-        new SecretariaService(new ClinicaEntityManager("ClinicaPU")).edit(secretariaSelecionada);
-        secretarias = new SecretariaService(new ClinicaEntityManager("ClinicaPU")).findAll();
+        new SecretariaService().update(secretariaSelecionada);
+        secretarias = new SecretariaService().findAll();
         RequestContext context = RequestContext.getCurrentInstance();
         context.execute("PF('dialogVisualizaSecretaria').hide();");
         addMessage("Secretária editada com sucesso!");
