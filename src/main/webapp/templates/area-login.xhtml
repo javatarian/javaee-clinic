@@ -11,19 +11,19 @@
                 <h:form>
                     <p:growl id="growlLogin" life="2000" />
 
-                    <!-- Campos required -->
-                    <p:panel header="Acessar o Sistema">
+                    <!-- Required fields -->
+                    <p:panel header="Login into the system">
                         <h:panelGrid columns="3" cellpadding="5">
                             <h:outputLabel for="login" value="Login:" /> 
                             <p:inputText id="login" value="#{sessionBean.login}" label="Login" />
                             <p:message for="login" />
 
-                            <h:outputLabel for="age" value="Senha: " />
-                            <p:password id="age" value="#{sessionBean.senha}" label="Age" />
-                            <p:message for="age" />
+                            <h:outputLabel for="pass" value="Password: " />
+                            <p:password id="pass" value="#{sessionBean.password}" label="Password" />
+                            <p:message for="pass" />
                         </h:panelGrid>
-                        <p:commandButton value="Entrar" update="growlLogin" 
-                                         action="#{sessionBean.logar()}" icon="ui-icon-circle-check" />
+                        <p:commandButton value="Login" update="growlLogin" 
+                                         action="#{sessionBean.logIn()}" icon="ui-icon-circle-check" />
                     </p:panel>
                 </h:form>
             </div>

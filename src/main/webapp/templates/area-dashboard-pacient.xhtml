@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form styleClass="tabela" id="form-pac">
+        <p:dataTable styleClass="text-center" var="pacient" value="#{pacientBean.pacients}" paginator="true" rows="10" rowKey="#{pacient.id}"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,20" selectionMode="single" selection="#{pacientBean.pickedPacient}" id="pacientTable"
+                     filteredValue="#{pacientBean.filteredPacients}" widgetVar="pacientTable" emptyMessage="No pacient was found">
+            <p:ajax event="rowSelect" listener="#{pacientBean.onRowSelect}" update="@(.dialogPacient) @this" oncomplete="PF('dialogShowPacient').show()" />
+
+            <f:facet name="header">
+                <p class="font-title">Pacients</p>
+            </f:facet>
+            <p:column headerText="Name" sortBy="#{pacient.name}" filterBy="#{pacient.name}" filterMatchMode="contains">
+                <h:outputText value="#{pacient.name}" />
+            </p:column>
+            <p:column headerText="Address" sortBy="#{pacient.address}" filterBy="#{pacient.address}" filterMatchMode="contains">
+                <h:outputText value="#{pacient.address}" />
+            </p:column>
+            <p:column headerText="Phone" sortBy="#{pacient.phone}" filterBy="#{pacient.phone}" filterMatchMode="contains">
+                <h:outputText value="#{pacient.phone}" />
+            </p:column>
+            <p:column headerText="Birthdate" sortBy="#{pacient.birthDate}" filterBy="#{pacient.birthDate}" filterMatchMode="contains">
+                <h:outputText value="#{pacient.birthDate}" />
+            </p:column>
+            <f:facet name="footer">
+                <p:commandButton value="Register Pacient" onclick="PF('dialogRegisterPacient').show();" />
+            </f:facet>
+        </p:dataTable>
+    </h:form>
+
+    <ui:insert name="dialogs">
+        <ui:include src="dialog/dialog-register/dialog-register-pacient.xhtml"/>              
+        <ui:include src="dialog/dialog-show/dialog-show-pacient.xhtml"/>           
+    </ui:insert>
+</ui:composition>

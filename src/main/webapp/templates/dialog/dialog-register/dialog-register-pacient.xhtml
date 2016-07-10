@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog header="Register Pacient" widgetVar="dialogRegisterPacient" closeOnEscape="true"
+              resizable="false" draggable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"/>
+                <div class="ui-grid-col-6">
+                    <h:form>
+                        <p:growl id="growlRegisterPacient" life="2000" />
+
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <h:outputLabel for="name" value="Name:" />
+                            <p:inputText id="name" value="#{pacientBean.registeredPacient.name}" label="name"
+                                         required="true" requiredMessage="Name is required!">
+                                <f:validateLength maximum="50" />
+                            </p:inputText>
+                            <p:message for="name" />
+
+                            <h:outputLabel for="phone" value="Phone:" />
+                            <p:inputText id="phone" value="#{pacientBean.registeredPacient.phone}" label="phone"
+                                         required="true" requiredMessage="Phone is required!">
+                                <f:validateLength maximum="20" />
+                            </p:inputText>
+                            <p:message for="phone" />
+
+                            <h:outputLabel for="address" value="Address:" />
+                            <p:inputText id="address" value="#{pacientBean.registeredPacient.address}" label="address">
+                                <f:validateLength maximum="100" />
+                            </p:inputText>
+                            <p:message for="address" />
+
+                            <h:outputLabel for="birthDate" value="Birthdate:" />
+                            <p:inputText id="birthDate" value="#{pacientBean.registeredPacient.birthDate}" label="birthDate">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </p:inputText>
+                            <p:message for="birthDate" />
+
+                            <p:commandButton value="Cancel" onclick="PF('dialogRegisterPacient').hide();" styleClass="ui-priority-primary"/>
+                            <p:commandButton value="Register" update="form-pac:pacientTable growlRegisterPacient @form" actionListener="#{pacientBean.cadastrarPaciente()}" icon="ui-icon-check" validateClient="true"/>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+                <div class="ui-grid-col-3"/>
+            </div>
+        </div>
+    </p:dialog>  
+</ui:composition>
+

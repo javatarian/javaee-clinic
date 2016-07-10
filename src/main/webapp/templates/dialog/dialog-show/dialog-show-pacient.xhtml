@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui">
+    <p:dialog header="Pacient Details" widgetVar="dialogShowPacient" modal="true"
+              showEffect="fade" draggable="false" hideEffect="fade" resizable="false" styleClass="dialogPacient">
+        <p:outputPanel id="pacientDetails" style="text-align:center;">
+            <h:form>
+                <p:growl id="growlShowPacient" life="2000" />
+
+                <p:inputText value="#{pacientBean.pickedPacient.id}" type="hidden"/>
+
+                <p:panelGrid  columns="2" columnClasses="label,value">
+
+                    <h:outputText value="Nome: " />
+                    <h:inputText value="#{pacientBean.pickedPacient.name}" />
+
+                    <h:outputText value="Telefone: " />
+                    <h:inputText value="#{pacientBean.pickedPacient.phone}" />
+
+                    <h:outputText value="Endereço: " />
+                    <h:inputText value="#{pacientBean.pickedPacient.address}"/>
+
+                    <h:outputText value="Data de Nascimento: " />
+                    <h:inputText value="#{pacientBean.pickedPacient.birthDate}"/>
+
+                    <p:commandButton value="Cancel" onclick="PF('dialogShowPacient').hide();" styleClass="ui-priority-primary"/>
+                    <p:commandButton value="Edit" update="form-pac:pacientTable growlShowPacient" actionListener="#{pacientBean.editarPaciente()}" icon="ui-icon-check" validateClient="true"/>
+                </p:panelGrid>
+            </h:form>
+        </p:outputPanel>
+    </p:dialog>
+</ui:component>
+

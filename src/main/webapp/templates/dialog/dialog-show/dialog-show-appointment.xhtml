@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <p:dialog header="Appointment Details" widgetVar="dialogShowAppointment" modal="true" showEffect="fade" hideEffect="fade"
+              resizable="false" draggable="false" styleClass="dialogAppointment">
+        <p:outputPanel id="appointmentDetails" style="text-align:center;">
+            <h:form>
+                <p:growl id="growlShowAppointment" life="2000" />
+                
+                <p:inputText value="#{appointmentBean.pickedAppointment.id}" type="hidden"/>
+                
+                <p:panelGrid  columns="2" columnClasses="label,value">
+
+                    <h:outputText value="Data: " />
+                    <h:inputText value="#{appointmentBean.pickedAppointment.appointmentDate}" />
+
+                    <h:outputText value="Paciente: " />
+                    <h:inputText value="#{appointmentBean.pickedAppointment.pacient.name}" />
+
+                    <h:outputText value="Médico: " />
+                    <h:inputText value="#{appointmentBean.pickedAppointment.doctor.name}"/>
+
+                    <h:outputText value="Plano de Saúde: " />
+                    <h:inputText value="#{appointmentBean.pickedAppointment.healthcarePlan}"/>
+                    
+                    <p:commandButton value="Cancel" onclick="PF('dialogShowAppointment').hide();" styleClass="ui-priority-primary"/>
+                    <p:commandButton value="Edit" update=":form-appo growlShowAppointment" actionListener="#{appointmentBean.editarConsulta()}" icon="ui-icon-check" validateClient="true"/>
+                </p:panelGrid>
+            </h:form>
+        </p:outputPanel>
+    </p:dialog>
+</ui:composition>
+

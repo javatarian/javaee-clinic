@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog header="Register Appointment" widgetVar="dialogRegisterAppointment" closeOnEscape="true"
+              resizable="false" draggable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
+        <div class="ui-grid ui-grid-responsive">
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-3"/>
+                <div class="ui-grid-col-6">
+                    <h:form>
+                        <p:growl id="growlRegisterAppointment" life="2000" />
+
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <h:outputLabel for="pacient" value="Pacient:" />
+                            <p:selectOneMenu id="pacient" value="#{appointmentBean.registeredAppointment.pacient}"
+                                             converter="pacientConverter" required="true"
+                                             requiredMessage="Paciente is required!">
+                                <f:selectItem itemLabel="Select the Pacient" noSelectionOption="true" />
+                                <f:selectItems var="pacient" itemLabel="#{pacient.name}" itemValue="#{pacient}" value="#{pacientBean.pacients}" />
+                            </p:selectOneMenu>
+                            <p:message for="pacient" />
+
+                            <h:outputLabel for="doctor" value="Doctor:" />
+                            <p:selectOneMenu id="doctor" value="#{appointmentBean.registeredAppointment.doctor}"
+                                             converter="doctorConverter" required="true"
+                                             requiredMessage="Doctor is required!">
+                                <f:selectItem itemLabel="Select the Doctor" noSelectionOption="true" />
+                                <f:selectItems var="doctor" itemLabel="#{doctor.name}" itemValue="#{doctor}" value="#{doctorBean.doctors}"/>
+                            </p:selectOneMenu>
+                            <p:message for="doctor" />
+
+                            <h:outputLabel for="healthcarePlan" value="Healthcare Plan:" />
+                            <p:inputText id="healthcarePlan" value="#{appointmentBean.registeredAppointment.healthcarePlan}" label="healthcarePlan"
+                                         required="true" requiredMessage="Healthcare Plan is required!">
+                                <f:validateLength maximum="20" />
+                            </p:inputText>
+                            <p:message for="healthcarePlan" />
+
+                            <h:outputLabel for="appointmentDate" value="Appointment Date:" />
+                            <p:calendar id="appointmentDate" converter="localDateTimeConverter"
+                                        mask="true" navigator="true" pattern="dd-MM-yyyy HH:mm" required="true" 
+                                        requiredMessage="Appointment Date is required!"
+                                        value="#{appointmentBean.registeredAppointment.appointmentDate}"/>
+                            <p:message for="appointmentDate" />
+
+                            <p:commandButton value="Cancel" onclick="PF('dialogRegisterAppointment').hide();" styleClass="ui-priority-primary"/>
+                            <p:commandButton value="Register" update=":form-appo growlRegisterAppointment @form" actionListener="#{appointmentBean.cadastrarConsulta()}" id="ajax" icon="ui-icon-check" validateClient="true"/>
+                        </h:panelGrid>
+                    </h:form>
+                </div>
+                <div class="ui-grid-col-3"/>
+            </div>
+        </div>
+    </p:dialog> 
+</ui:component>
+

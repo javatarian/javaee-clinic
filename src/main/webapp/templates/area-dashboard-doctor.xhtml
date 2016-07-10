@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form id="form-med">
+        <p:dataTable styleClass="text-center" var="doctor" value="#{doctorBean.doctors}" paginator="true" rows="10" rowKey="#{doctor.id}"
+                     paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                     rowsPerPageTemplate="5,10,20" selectionMode="single" selection="#{doctorBean.pickedDoctor}" id="doctorTable"
+                     filteredValue="#{doctorBean.filteredDoctors}" widgetVar="doctorTable" emptyMessage="No doctor was found">
+            <p:ajax event="rowSelect" listener="#{doctorBean.onRowSelect}" update="@(.dialogDoctor) @this" oncomplete="PF('dialogShowDoctor').show()" />
+
+
+            <f:facet name="header">
+                <p class="font-title">Doctors</p>
+            </f:facet>
+            <p:column headerText="Name" sortBy="#{doctor.name}" filterBy="#{doctor.name}" filterMatchMode="contains">
+                <h:outputText value="#{doctor.name}" />
+            </p:column>
+            <p:column headerText="Address" sortBy="#{doctor.address}" filterBy="#{doctor.address}" filterMatchMode="contains">
+                <h:outputText value="#{doctor.address}" />
+            </p:column>
+            <p:column headerText="Phone" sortBy="#{doctor.phone}" filterBy="#{doctor.phone}" filterMatchMode="contains">
+                <h:outputText value="#{doctor.phone}" />
+            </p:column>
+            <p:column headerText="Specialties" sortBy="#{doctor.specialties}" filterBy="#{doctor.specialties}" filterMatchMode="contains">
+                <h:outputText value="#{doctor.specialties}" />
+            </p:column>
+            <f:facet name="footer">
+                <p:commandButton value="Register Doctor" oncomplete="PF('dialogRegisterDoctor').show();" />
+            </f:facet>
+        </p:dataTable>
+    </h:form>
+
+    <ui:insert name="dialogs">
+        <ui:include src="dialog/dialog-register/dialog-register-doctor.xhtml"/>                    
+        <ui:include src="dialog/dialog-show/dialog-show-doctor.xhtml"/>  
+    </ui:insert>
+</ui:composition>
