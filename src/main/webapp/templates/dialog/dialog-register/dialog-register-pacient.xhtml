@@ -42,7 +42,7 @@
                             <p:message for="birthDate" />
 
                             <p:commandButton value="Cancel" onclick="PF('dialogRegisterPacient').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Register" update="form-pac:pacientTable growlRegisterPacient @form" actionListener="#{pacientBean.cadastrarPaciente()}" icon="ui-icon-check" validateClient="true"/>
+                            <p:commandButton value="Register" update="form-pac:pacientTable growlRegisterPacient @form" actionListener="#{pacientBean.registerPacient()}" icon="ui-icon-check" validateClient="true"/>
                         </h:panelGrid>
                     </h:form>
                 </div>

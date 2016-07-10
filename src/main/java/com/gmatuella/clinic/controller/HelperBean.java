@@ -52,25 +52,25 @@ public class HelperBean {
             }
         }
         if (results.isEmpty()) {
-            results.add("Paciente não encontrado!");
+            results.add("Pacient not found!");
         }
         return results;
     }
 
-    public String redirecionaLogin() {
+    public String redirectLogin() {
         return "login.xhtml?faces-redirect=true";
     }
 
-    public String redirecionaDashboard() {
+    public String redirectDashboard() {
         return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String redirecionaConsultas() {
-        return "consultas.xhtml?faces-redirect=true";
+    public String redirectAppointments() {
+        return "appointments.xhtml?faces-redirect=true";
     }
 
-    public String redirecionaAnalises() {
-        return "analises.xhtml?faces-redirect=true";
+    public String redirectAnalytics() {
+        return "analytics.xhtml?faces-redirect=true";
     }
 
     public String criarMedicos() {
@@ -118,7 +118,7 @@ public class HelperBean {
     }
 
     public void buttonAction(ActionEvent actionEvent) {
-        addMessage("Paciente cadastrado com sucesso!");
+        addMessage("Pacient successfully registered!");
     }
 
     public void buttonAction2(ActionEvent actionEvent) {

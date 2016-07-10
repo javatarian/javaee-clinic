@@ -34,22 +34,22 @@ public class PacientBean {
         pacients = new PacientService().findAll();
     }
 
-    public void cadastrarPaciente() {
+    public void registerPacient() {
         new PacientService().save(registeredPacient);
         pacients = new PacientService().findAll();
         registeredPacient = new Pacient();
         
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogCadastroPaciente').hide();");
-        addMessage("Paciente cadastrado com sucesso!");
+        context.execute("PF('dialogRegisterPacient').hide();");
+        addMessage("Pacient successfully registered!");
     }
     
-    public void editarPaciente() {
+    public void editPacient() {
         new PacientService().update(pickedPacient);
         pacients = new PacientService().findAll();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogVisualizaPaciente').hide();");
-        addMessage("Paciente editado com sucesso!");
+        context.execute("PF('dialogShowPacient').hide();");
+        addMessage("Pacient successfully registered!");
     }
 
     public void addMessage(String summary) {

@@ -34,7 +34,7 @@
                     <p:inputTextarea value="#{doctorBean.pickedDoctor.specialties}"/>
 
                     <p:commandButton value="Cancel" onclick="PF('dialogShowDoctor').hide();" styleClass="ui-priority-primary"/>
-                    <p:commandButton value="Edit" update="form-med:doctorTable growlShowDoctor" actionListener="#{doctorBean.editarMedico()}" icon="ui-icon-check" validateClient="true"/>
+                    <p:commandButton value="Edit" update="form-med:doctorTable growlShowDoctor" actionListener="#{doctorBean.editDoctor()}" icon="ui-icon-check" validateClient="true"/>
                 </p:panelGrid>
             </h:form>
         </p:outputPanel>

@@ -34,23 +34,23 @@ public class SecretaryBean {
         secretaries = new SecretaryService().findAll();
     }
 
-    public void cadastrarSecretaria() {
+    public void registerSecretary() {
         registeredSecretary.setStatus(Boolean.TRUE);
         new SecretaryService().save(registeredSecretary);
         secretaries = new SecretaryService().findAll();
         registeredSecretary = new Secretary();
         
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogCadastroSecretaria').hide();");
-        addMessage("Secretária cadastrada com sucesso!");
+        context.execute("PF('dialogRegisterSecretary').hide();");
+        addMessage("Secretary successfully registered!");
     }
 
-    public void editarSecretaria() {
+    public void editSecretary() {
         new SecretaryService().update(pickedSecretary);
         secretaries = new SecretaryService().findAll();
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogVisualizaSecretaria').hide();");
-        addMessage("Secretária editada com sucesso!");
+        context.execute("PF('dialogShowSecretary').hide();");
+        addMessage("Secretary successfully edited!");
     }
 
     public void addMessage(String summary) {

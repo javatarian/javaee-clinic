@@ -34,24 +34,24 @@ public class DoctorBean {
         doctors = new DoctorService().findAll();
     }
 
-    public void cadastrarMedico() {
+    public void registerDoctor() {
         registeredDoctor.setStatus(Boolean.TRUE);
         new DoctorService().save(registeredDoctor);
         doctors = new DoctorService().findAll();
         pickedDoctor = new Doctor();
         
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogCadastroMedico').hide();");
-        addMessage("Médico cadastrado com sucesso!");
+        context.execute("PF('dialogRegisterDoctor').hide();");
+        addMessage("Doctor successfully registered!");
     }
 
-    public void editarMedico() {
+    public void editDoctor() {
         new DoctorService().update(pickedDoctor);
         doctors = new DoctorService().findAll();
         
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogVisualizaMedico').hide();");
-        addMessage("Médico editado com sucesso!");
+        context.execute("PF('dialogShowDoctor').hide();");
+        addMessage("Doctor sucessfully edited!");
     }
 
     public void deletarMedico() {

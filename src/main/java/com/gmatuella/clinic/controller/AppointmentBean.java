@@ -41,33 +41,28 @@ public class AppointmentBean implements Serializable {
         appointments = new AppointmentService().findAll();
     }
 
-    public void cadastrarConsulta() {
-        System.out.println(registeredAppointment);
+    public void registerAppointment() {
         new AppointmentService().save(registeredAppointment);
         appointments = new AppointmentService().findAll();
         registeredAppointment = new Appointment();
 
         RequestContext requestContext = RequestContext.getCurrentInstance();
-        requestContext.execute("PF('dialogCadastroConsulta').hide()");
-        addMessage("Consulta cadastrada com sucesso!");
+        requestContext.execute("PF('dialogRegisterAppointment').hide()");
+        addMessage("Appointment successfully registered!");
     }
 
-    public void deletarConsulta() {
-        //Verificar se é 24 horas antes. Se for, deletar diretamente do banco.
-    }
-
-    public void editarConsulta() {
+    public void editAppointment() {
 
     }
 
-    public void abrirConsulta(Appointment consulta) {
+    public void openAppointment(Appointment consulta) {
 //        long diferencaDeTempo = Duration.between(consulta.getDataConsulta(), LocalDateTime.now()).getSeconds();
         long diferencaDeTempo = 1000L;
         if (diferencaDeTempo < 1800) {
             RequestContext requestContext = RequestContext.getCurrentInstance();
-            requestContext.execute("PF('dialogAbreConsulta').show()");
+            requestContext.execute("PF('dialogOpenAppointment').show()");
         } else {
-            addMessage("Não é possível abrir a consulta fora do horário determinado!");
+            addMessage("It wasn't possible to open the appointment!");
         }
     }
 

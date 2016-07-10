@@ -49,7 +49,7 @@ public class SessionBean implements Serializable {
             if (registeredSecretary.getLogin().equals(login) && registeredSecretary.getPassword().equals(password)) {
                 secretary = registeredSecretary;
                 logged = true;
-                return "consultas.xhtml?faces-redirect=true";
+                return "appointments.xhtml?faces-redirect=true";
             }
         }
         DoctorService docService = new DoctorService();
@@ -57,7 +57,7 @@ public class SessionBean implements Serializable {
             if (registeredDoctor.getLogin().equals(login) && registeredDoctor.getPassword().equals(password)) {
                 doctor = registeredDoctor;
                 logged = true;
-                return "consultas.xhtml?faces-redirect=true";
+                return "appointments.xhtml?faces-redirect=true";
             }
         }
         AdminService admService = new AdminService();
@@ -68,7 +68,7 @@ public class SessionBean implements Serializable {
                 return "dashboard.xhtml?faces-redirect=true";
             }
         }
-        addMessage("Usuário e/ou Senha inválido(s)!"); //Retornar algo que não refresh a pag
+        addMessage("Invalid User and/or Password!"); //Retornar algo que não refresh a pag
         return "";
     }
 

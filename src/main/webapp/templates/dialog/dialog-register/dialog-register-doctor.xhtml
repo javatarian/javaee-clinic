@@ -44,7 +44,7 @@
                             <p:message styleClass="espec" for="specialties" />
 
                             <p:commandButton value="Cancel" oncomplete="PF('dialogRegisterDoctor').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Register" update="form-med:doctorTable growlRegisterDoctor @form" actionListener="#{doctorBean.cadastrarMedico()}" icon="ui-icon-check" validateClient="true"/>
+                            <p:commandButton value="Register" update="form-med:doctorTable growlRegisterDoctor @form" actionListener="#{doctorBean.registerDoctor()}" icon="ui-icon-check" validateClient="true"/>
                         </h:panelGrid>
                     </h:form>
                 </div>

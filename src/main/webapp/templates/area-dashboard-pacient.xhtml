@@ -6,9 +6,9 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:form styleClass="tabela" id="form-pac">
-        <p:dataTable styleClass="text-center" var="pacient" value="#{pacientBean.pacients}" paginator="true" rows="10" rowKey="#{pacient.id}"
+        <p:dataTable styleClass="text-center table" var="pacient" value="#{pacientBean.pacients}" paginator="true" rows="10" rowKey="#{pacient.id}"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,20" selectionMode="single" selection="#{pacientBean.pickedPacient}" id="pacientTable"
+                     rowsPerPageTemplate="5,10,20,50" selectionMode="single" selection="#{pacientBean.pickedPacient}" id="pacientTable"
                      filteredValue="#{pacientBean.filteredPacients}" widgetVar="pacientTable" emptyMessage="No pacient was found">
             <p:ajax event="rowSelect" listener="#{pacientBean.onRowSelect}" update="@(.dialogPacient) @this" oncomplete="PF('dialogShowPacient').show()" />
 
@@ -28,7 +28,7 @@
                 <h:outputText value="#{pacient.birthDate}" />
             </p:column>
             <f:facet name="footer">
-                <p:commandButton value="Register Pacient" onclick="PF('dialogRegisterPacient').show();" />
+                <p:commandButton value="Register Pacient" oncomplete="PF('dialogRegisterPacient').show();" />
             </f:facet>
         </p:dataTable>
     </h:form>

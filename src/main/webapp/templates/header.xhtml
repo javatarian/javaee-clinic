@@ -11,9 +11,9 @@
                 <h:form>  
                     <p:growl id="messages"/>
                     <p:menubar styleClass="em-130">
-                        <p:menuitem value="Dashboard" action="#{helperBean.redirecionaDashboard()}" icon="ui-icon-calendar" />
-                        <p:menuitem value="Appointments" action="#{helperBean.redirecionaConsultas()}"  icon="ui-icon-person"/>
-                        <p:menuitem value="Analytics" rendered="#{sessionBean.isAdmin()}" action="#{helperBean.redirecionaAnalises()}"  icon="ui-icon-clipboard"/>
+                        <p:menuitem value="Dashboard" action="#{helperBean.redirectDashboard()}" icon="ui-icon-calendar" />
+                        <p:menuitem value="Appointments" action="#{helperBean.redirectAppointments()}"  icon="ui-icon-person"/>
+                        <p:menuitem value="Analytics" rendered="#{sessionBean.isAdmin()}" action="#{helperBean.redirectAnalytics()}"  icon="ui-icon-clipboard"/>
                         <f:facet name="options">
                             <p:commandButton value="Logout" action="#{sessionBean.logout()}" icon="ui-icon-extlink" />
                         </f:facet>

@@ -48,7 +48,7 @@
                             <p:message for="appointmentDate" />
 
                             <p:commandButton value="Cancel" onclick="PF('dialogRegisterAppointment').hide();" styleClass="ui-priority-primary"/>
-                            <p:commandButton value="Register" update=":form-appo growlRegisterAppointment @form" actionListener="#{appointmentBean.cadastrarConsulta()}" id="ajax" icon="ui-icon-check" validateClient="true"/>
+                            <p:commandButton value="Register" update=":form-appo growlRegisterAppointment @form" actionListener="#{appointmentBean.registerAppointment()}" id="ajax" icon="ui-icon-check" validateClient="true"/>
                         </h:panelGrid>
                     </h:form>
                 </div>

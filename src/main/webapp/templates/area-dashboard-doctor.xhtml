@@ -8,7 +8,7 @@
     <h:form id="form-med">
         <p:dataTable styleClass="text-center" var="doctor" value="#{doctorBean.doctors}" paginator="true" rows="10" rowKey="#{doctor.id}"
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                     rowsPerPageTemplate="5,10,20" selectionMode="single" selection="#{doctorBean.pickedDoctor}" id="doctorTable"
+                     rowsPerPageTemplate="5,10,20,50" selectionMode="single" selection="#{doctorBean.pickedDoctor}" id="doctorTable"
                      filteredValue="#{doctorBean.filteredDoctors}" widgetVar="doctorTable" emptyMessage="No doctor was found">
             <p:ajax event="rowSelect" listener="#{doctorBean.onRowSelect}" update="@(.dialogDoctor) @this" oncomplete="PF('dialogShowDoctor').show()" />
 
