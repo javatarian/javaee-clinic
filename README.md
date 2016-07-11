@@ -35,8 +35,16 @@ To be added...
 To be added...
 
 ---
-## Misc
+## Details about the project
 
-Q: **"Wait, where is the DAO pattern?! Every java project with persistence has a DAO layer!!"**
+- Singletons to manage some "utilities";
+- Focusing on making a UI responsive enough to Desktop/Tablet (you won't manage this kind of stuff on a mobile, right?);
+- Filters used to manage the respective users access permissions (and some containers only render for certain users);
+- Converters to control some input/outputs, like Dates and Entities;
+- Some entities may extend a mapped superclass, like Secretary and Doctor;
+- Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
+- Kind of different GenericService without using the DAO layer/pattern.
 
-A: Because I agree with Balazs Zsoldos answer [here](http://stackoverflow.com/questions/3888575/single-dao-generic-crud-methods-jpa-hibernate-spring).
+*"Wait, __without__ the __DAO pattern__?! __Every__ java project  - with persistence - has a DAO layer!!"*
+
+Read the Balazs Zsoldos answer [here](http://stackoverflow.com/questions/3888575/single-dao-generic-crud-methods-jpa-hibernate-spring).
