@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author gmatuella
  */
 @WebFilter(filterName = "UserFilter", description = "Filter dedicated to the control of the users and its respective accesses",
-        urlPatterns = {"/faces/dashboard.xhtml", "/faces/consultas.xhtml", "/faces/analises.xhtml"})
+        urlPatterns = {"/faces/dashboard.xhtml", "/faces/appointments.xhtml", "/faces/analytics.xhtml"})
 public class UserFilter implements Filter {
 
     @Inject
@@ -32,7 +32,8 @@ public class UserFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
-
+        
+        //Must test on two separate ifs, otherwise it might call a NullPointExc
         if (session == null) {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/login.xhtml");
         } else if (!session.getLogged()) {

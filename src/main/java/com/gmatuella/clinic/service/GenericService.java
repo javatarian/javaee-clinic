@@ -13,6 +13,9 @@ import javax.persistence.EntityManager;
  *
  * @author Guilherme
  */
+//A simple Generic Service that contains the singleton of the EM util. 
+//If needed, the subclass that extends this Generic can easily use the
+//protected fields to create specific methods.
 public class GenericService<T> {
 
     protected EntityManagerUtil entityManagerUtil;
@@ -42,7 +45,7 @@ public class GenericService<T> {
         EntityManager entityManager = entityManagerUtil.createManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(entity);
+            entityManager.merge(entity);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();

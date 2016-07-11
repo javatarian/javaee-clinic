@@ -8,7 +8,7 @@ package com.gmatuella.clinic.controller;
 import com.gmatuella.clinic.entity.Administrator;
 import com.gmatuella.clinic.entity.Doctor;
 import com.gmatuella.clinic.entity.Secretary;
-import com.gmatuella.clinic.service.AdminService;
+import com.gmatuella.clinic.service.AdministratorService;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.service.SecretaryService;
 import java.io.Serializable;
@@ -60,7 +60,7 @@ public class SessionBean implements Serializable {
                 return "appointments.xhtml?faces-redirect=true";
             }
         }
-        AdminService admService = new AdminService();
+        AdministratorService admService = new AdministratorService();
         for (Administrator registeredAdministrator : admService.findAll()) {
             if (registeredAdministrator.getLogin().equals(login) && registeredAdministrator.getPassword().equals(password)) {
                 administrator = registeredAdministrator;

@@ -15,22 +15,22 @@
 
                 <p:panelGrid  columns="2" columnClasses="label,value">
 
-                    <h:outputText value="Nome: " />
+                    <h:outputText value="Name: " />
                     <h:inputText value="#{doctorBean.pickedDoctor.name}" />
 
-                    <h:outputText value="Telefone: " />
+                    <h:outputText value="Phone: " />
                     <h:inputText value="#{doctorBean.pickedDoctor.phone}"/>
 
-                    <h:outputText value="Endereço: " />
+                    <h:outputText value="Address: " />
                     <h:inputText value="#{doctorBean.pickedDoctor.address}"/>
 
                     <h:outputText value="Login: " />
                     <h:inputText value="#{doctorBean.pickedDoctor.login}"/>
 
-                    <h:outputText value="Senha: " />
+                    <h:outputText value="Password: " />
                     <h:inputText value="#{doctorBean.pickedDoctor.password}"/>
 
-                    <h:outputText value="Especialidades: " />
+                    <h:outputText value="Specialties: " />
                     <p:inputTextarea value="#{doctorBean.pickedDoctor.specialties}"/>
 
                     <p:commandButton value="Cancel" onclick="PF('dialogShowDoctor').hide();" styleClass="ui-priority-primary"/>

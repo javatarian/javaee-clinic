@@ -13,8 +13,7 @@ import javax.persistence.Persistence;
  *
  * @author gmatuella
  */
-//This class is a Singleton. But not a simple one,
-//it has a lazy initialization and is thread safe
+//Singleton with lazy initialization and is thread safe.
 public class EntityManagerUtil {
     
     private static EntityManagerUtil instance;
@@ -34,5 +33,4 @@ public class EntityManagerUtil {
     public EntityManager createManager() {
         return factory.createEntityManager();
     }
-
 }

@@ -15,16 +15,16 @@
                 
                 <p:panelGrid  columns="2" columnClasses="label,value">
 
-                    <h:outputText value="Data: " />
+                    <h:outputText value="Date: " />
                     <h:inputText value="#{appointmentBean.pickedAppointment.appointmentDate}" />
 
-                    <h:outputText value="Paciente: " />
+                    <h:outputText value="Pacient: " />
                     <h:inputText value="#{appointmentBean.pickedAppointment.pacient.name}" />
 
-                    <h:outputText value="Médico: " />
+                    <h:outputText value="Doctor: " />
                     <h:inputText value="#{appointmentBean.pickedAppointment.doctor.name}"/>
 
-                    <h:outputText value="Plano de Saúde: " />
+                    <h:outputText value="Healthcare Plan: " />
                     <h:inputText value="#{appointmentBean.pickedAppointment.healthcarePlan}"/>
                     
                     <p:commandButton value="Cancel" onclick="PF('dialogShowAppointment').hide();" styleClass="ui-priority-primary"/>

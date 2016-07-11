@@ -6,14 +6,16 @@
 package com.gmatuella.clinic.service;
 
 import com.gmatuella.clinic.entity.Administrator;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author gmatuella
  */
-public class AdminService extends GenericService<Administrator> {
+@Stateless
+public class AdministratorService extends GenericService<Administrator> {
 
-    public AdminService() {
+    public AdministratorService() {
         super(Administrator.class);
     }
 }

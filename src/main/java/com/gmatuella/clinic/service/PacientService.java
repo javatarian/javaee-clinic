@@ -6,11 +6,13 @@
 package com.gmatuella.clinic.service;
 
 import com.gmatuella.clinic.entity.Pacient;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author gmatuella
  */
+@Stateless
 public class PacientService extends GenericService<Pacient> {
 
     public PacientService() {
