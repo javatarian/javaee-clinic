@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,15 +25,15 @@ public class Appointment implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_pacient", referencedColumnName = "id", nullable = false)
     private Pacient pacient;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_doctor", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
 
-    @Column(name = "healthcare_plan", length = 50, nullable = false)
+    @Column(name = "healthcare_plan", nullable = false)
     private String healthcarePlan;
 
     @Column(name = "appointment_date", nullable = false)

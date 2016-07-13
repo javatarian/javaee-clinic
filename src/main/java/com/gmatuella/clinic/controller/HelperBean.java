@@ -11,8 +11,8 @@ import com.gmatuella.clinic.entity.Secretary;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.service.PacientService;
 import com.gmatuella.clinic.service.SecretaryService;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import javax.faces.application.FacesMessage;
@@ -96,7 +96,7 @@ public class HelperBean {
             pacTeste.setName("Pac " + randomValue);
             pacTeste.setPhone("(51) 777" + randomValue);
             pacTeste.setAddress("Av. Test" + randomValue);
-            pacTeste.setBirthDate(new Date());
+            pacTeste.setBirthDate(LocalDate.now());
             new PacientService().save(pacTeste);
         }
         return "dashboard.xhtml?faces-redirect=true";

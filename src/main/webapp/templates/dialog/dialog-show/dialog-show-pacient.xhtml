@@ -3,7 +3,8 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
               xmlns:h="http://xmlns.jcp.org/jsf/html"
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-              xmlns:p="http://primefaces.org/ui">
+              xmlns:p="http://primefaces.org/ui"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
     <p:dialog header="Pacient Details" widgetVar="dialogShowPacient" modal="true"
               showEffect="fade" draggable="false" hideEffect="fade" resizable="false" styleClass="dialogPacient">
         <p:outputPanel id="pacientDetails" style="text-align:center;">
@@ -12,19 +13,35 @@
 
                 <p:inputText value="#{pacientBean.pickedPacient.id}" type="hidden"/>
 
-                <p:panelGrid  columns="2" columnClasses="label,value">
+                <p:panelGrid  columns="3" columnClasses="label,value,message">
 
-                    <h:outputText value="Name: " />
-                    <h:inputText value="#{pacientBean.pickedPacient.name}" />
+                    <h:outputLabel for="name" value="Name:" />
+                    <p:inputText id="name" value="#{pacientBean.pickedPacient.name}" label="name"
+                                 required="true" requiredMessage="Name is required!">
+                        <f:validateLength minimum="2" maximum="50" />
+                    </p:inputText>
+                    <p:message for="name" />
 
-                    <h:outputText value="Phone: " />
-                    <h:inputText value="#{pacientBean.pickedPacient.phone}" />
+                    <h:outputLabel for="phone" value="Phone:" />
+                    <p:inputText id="phone" value="#{pacientBean.pickedPacient.phone}" label="phone"
+                                 required="true" requiredMessage="Phone is required!">
+                        <f:validateLength minimum="8" maximum="20" />
+                    </p:inputText>
+                    <p:message for="phone" />
 
-                    <h:outputText value="Address: " />
-                    <h:inputText value="#{pacientBean.pickedPacient.address}"/>
+                    <h:outputLabel for="address" value="Address:" />
+                    <p:inputText id="address" value="#{pacientBean.pickedPacient.address}" label="address"
+                                 required="true" requiredMessage="Address is required!">
+                        <f:validateLength maximum="100" />
+                    </p:inputText>
+                    <p:message for="address" />
 
-                    <h:outputText value="Birthdate: " />
-                    <h:inputText value="#{pacientBean.pickedPacient.birthDate}"/>
+                    <h:outputLabel for="birthDate" value="Birthdate:" />
+                    <p:calendar id="birthDate" converter="localDateConverter"
+                                mask="true" navigator="true" pattern="dd-MM-yyyy" required="true" 
+                                requiredMessage="Birthdate is required!" label="birthDate"
+                                value="#{pacientBean.pickedPacient.birthDate}"/>
+                    <p:message for="birthDate" />  
 
                     <p:commandButton value="Cancel" onclick="PF('dialogShowPacient').hide();" styleClass="ui-priority-primary"/>
                     <p:commandButton value="Edit" update="form-pac:pacientTable growlShowPacient" actionListener="#{pacientBean.editPacient()}" icon="ui-icon-check" validateClient="true"/>

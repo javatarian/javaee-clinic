@@ -1,7 +1,7 @@
 package com.gmatuella.clinic.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -35,13 +33,12 @@ public class Pacient implements Serializable {
     private String phone;
 
     @Column(name = "birth_date", nullable = true)
-    @Temporal(TemporalType.DATE)
-    private Date birthDate;
+    private LocalDate birthDate;
 
     public Pacient() {
     }
 
-    public Pacient(Long id, String name, String address, String phone, Date birthDate) {
+    public Pacient(Long id, String name, String address, String phone, LocalDate birthDate) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -81,11 +78,11 @@ public class Pacient implements Serializable {
         this.phone = phone;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

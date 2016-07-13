@@ -18,28 +18,30 @@
                             <h:outputLabel for="name" value="Name:" />
                             <p:inputText id="name" value="#{pacientBean.registeredPacient.name}" label="name"
                                          required="true" requiredMessage="Name is required!">
-                                <f:validateLength maximum="50" />
+                                <f:validateLength minimum="2" maximum="50" />
                             </p:inputText>
                             <p:message for="name" />
 
                             <h:outputLabel for="phone" value="Phone:" />
                             <p:inputText id="phone" value="#{pacientBean.registeredPacient.phone}" label="phone"
                                          required="true" requiredMessage="Phone is required!">
-                                <f:validateLength maximum="20" />
+                                <f:validateLength minimum="8" maximum="20" />
                             </p:inputText>
                             <p:message for="phone" />
 
                             <h:outputLabel for="address" value="Address:" />
-                            <p:inputText id="address" value="#{pacientBean.registeredPacient.address}" label="address">
+                            <p:inputText id="address" value="#{pacientBean.registeredPacient.address}" label="address"
+                                         required="true" requiredMessage="Address is required!">
                                 <f:validateLength maximum="100" />
                             </p:inputText>
                             <p:message for="address" />
 
                             <h:outputLabel for="birthDate" value="Birthdate:" />
-                            <p:inputText id="birthDate" value="#{pacientBean.registeredPacient.birthDate}" label="birthDate">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </p:inputText>
-                            <p:message for="birthDate" />
+                            <p:calendar id="birthDate" converter="localDateConverter"
+                                        mask="true" navigator="true" pattern="dd-MM-yyyy" required="true" 
+                                        requiredMessage="Birthdate is required!" label="birthDate"
+                                        value="#{pacientBean.registeredPacient.birthDate}"/>
+                            <p:message for="birthDate" />             
 
                             <p:commandButton value="Cancel" onclick="PF('dialogRegisterPacient').hide();" styleClass="ui-priority-primary"/>
                             <p:commandButton value="Register" update="form-pac:pacientTable growlRegisterPacient @form" actionListener="#{pacientBean.registerPacient()}" icon="ui-icon-check" validateClient="true"/>
