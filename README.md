@@ -43,6 +43,7 @@ To be added...
 - Converters to control some input/outputs, like Dates and Entities;
 - Some entities may extend a mapped superclass, like Secretary and Doctor;
 - Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
+- Cipher encryption for password storage;
 - Kind of different GenericService without using the DAO layer/pattern.
 
 *"Wait, __without__ the __DAO pattern__?! __Every__ java project  - with persistence - has a DAO layer!!"*
