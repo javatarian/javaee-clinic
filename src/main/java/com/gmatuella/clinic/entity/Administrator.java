@@ -27,10 +27,10 @@ public class Administrator implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String login;
 
-    @Column(length = 100)
+    @Column(nullable = false)
     private String password;
 
     public Administrator() {

@@ -23,13 +23,13 @@ public class Pacient implements Serializable {
     @Column(nullable = false)
     private Long id;
 
-    @Column(length = 50, nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(length = 100)
+    @Column(nullable = false)
     private String address;
 
-    @Column(length = 20, nullable = false)
+    @Column(nullable = false)
     private String phone;
 
     @Column(name = "birth_date", nullable = true)

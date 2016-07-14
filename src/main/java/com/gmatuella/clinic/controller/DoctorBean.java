@@ -52,7 +52,7 @@ public class DoctorBean {
         ClinicUtil.getInstance().addMessage("Doctor sucessfully edited!");
     }
 
-    public void deletarMedico() {
+    public void deleteDoctor() {
         doctorService.delete(pickedDoctor);
         doctors = doctorService.findAll();
 

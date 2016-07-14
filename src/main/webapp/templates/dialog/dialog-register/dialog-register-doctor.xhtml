@@ -5,7 +5,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:dialog header="Register Doctor" widgetVar="dialogRegisterDoctor" closeOnEscape="true" draggable="false"
+    <p:dialog header="Register Doctor" widgetVar="dialogRegisterDoctor" closeOnEscape="true" draggable="true"
               resizable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
         <div class="ui-grid ui-grid-responsive">
             <div class="ui-grid-row">
@@ -13,34 +13,53 @@
                 <div class="ui-grid-col-6">
                     <h:form>
                         <p:growl id="growlRegisterDoctor" life="2000" />
-                        
+
                         <h:panelGrid columns="3" cellpadding="5">
                             <h:outputLabel for="name" value="Name:" />
-                            <p:inputText id="name" value="#{doctorBean.registeredDoctor.name}" label="name" required="true"/>
+                            <p:inputText id="name" value="#{doctorBean.registeredDoctor.name}" label="name"
+                                         required="true" requiredMessage="Name is required!">
+                                <f:validateLength minimum="2" maximum="50" />
+                            </p:inputText>
                             <p:message for="name" />
 
                             <h:outputLabel for="phone" value="Phone:" />
-                            <p:inputText id="phone" value="#{doctorBean.registeredDoctor.phone}" label="phone" required="true"/>
+                            <p:inputMask id="phone" value="#{doctorBean.registeredDoctor.phone}" mask="(999) 9999-9999"
+                                         label="phone" required="true" requiredMessage="Phone is required!"/>
                             <p:message for="phone" />
 
                             <h:outputLabel for="address" value="Address:" />
-                            <p:inputText id="address" value="#{doctorBean.registeredDoctor.address}" label="address"/>
+                            <p:inputText id="address" value="#{doctorBean.registeredDoctor.address}"  label="address"
+                                         required="true" requiredMessage="Address is required!">
+                                <f:validateLength maximum="100" />
+                            </p:inputText>
                             <p:message for="address" />
 
                             <h:outputLabel for="login" value="Login:" />
-                            <p:inputText id="login" value="#{doctorBean.registeredDoctor.login}" label="login"/>
+                            <p:inputText id="login" value="#{doctorBean.registeredDoctor.login}" label="login"
+                                         required="true" requiredMessage="Login is required!">
+                                <f:validateLength minimum="4" maximum="20" />
+                            </p:inputText>
                             <p:message for="login" />
 
                             <h:outputLabel for="password" value="Password:" />
-                            <p:password id="password" match="repeatPassword" value="#{doctorBean.registeredDoctor.password}" label="password"/>
+                            <p:password id="password" match="repeatPassword" value="#{doctorBean.registeredDoctor.password}"
+                                        label="password" required="true" requiredMessage="Password is required!">
+                                <f:validateLength minimum="4" maximum="30" />
+                            </p:password>
                             <p:message for="password" />
 
                             <h:outputLabel for="repeatPassword" value="Repeat Password:" />
-                            <p:password id="repeatPassword" value="#{doctorBean.registeredDoctor.password}" label="repeatPassword"/>
+                            <p:password id="repeatPassword" value="#{doctorBean.registeredDoctor.password}"
+                                        label="repeatPassword" required="true" requiredMessage="Password is required!">
+                                <f:validateLength minimum="4" maximum="30" />
+                            </p:password>
                             <p:message for="repeatPassword" />
 
-                            <h:outputLabel styleClass="espec" for="specialties" value="Specialties:" />
-                            <p:inputTextarea styleClass="espec" id="specialties" value="#{doctorBean.registeredDoctor.specialties}" label="especialidades"/>
+                            <h:outputLabel styleClass="espec" for="specialties" value="Specialties: " />
+                            <p:inputTextarea id="specialties" value="#{doctorBean.registeredDoctor.specialties}"
+                                             styleClass="espec" label="specialties">
+                                <f:validateLength maximum="1000" />
+                            </p:inputTextarea>
                             <p:message styleClass="espec" for="specialties" />
 
                             <p:commandButton value="Cancel" oncomplete="PF('dialogRegisterDoctor').hide();" styleClass="ui-priority-primary"/>

@@ -16,7 +16,7 @@
                 <p class="font-title">Appointments</p>
             </f:facet>
             <p:column headerText="Date" sortBy="#{appointment.appointmentDate}" filterBy="#{appointment.appointmentDate}" filterMatchMode="contains">
-                <h:outputText value="#{appointment.appointmentDate}" />
+                <h:outputText converter="localDateTimeConverter" value="#{appointment.appointmentDate}" />
             </p:column>
             <p:column headerText="Pacient" sortBy="#{appointment.pacient.name}" filterBy="#{appointment.pacient.name}" filterMatchMode="contains">
                 <h:outputText value="#{appointment.pacient.name}" />

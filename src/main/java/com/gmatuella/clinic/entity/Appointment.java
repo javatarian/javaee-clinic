@@ -39,7 +39,7 @@ public class Appointment implements Serializable {
     @Column(name = "appointment_date", nullable = false)
     private LocalDateTime appointmentDate;
 
-    @Column(length = 1000, nullable = true)
+    @Column(nullable = true)
     private String observations;
 
     public Appointment() {

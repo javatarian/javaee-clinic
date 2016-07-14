@@ -5,8 +5,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:dialog header="Register Pacient" widgetVar="dialogRegisterPacient" closeOnEscape="true"
-              resizable="false" draggable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
+    <p:dialog header="Register Pacient" widgetVar="dialogRegisterPacient" closeOnEscape="true" draggable="true"
+              resizable="false" modal="true" width="50%" height="50%" showEffect="fade" hideEffect="fade">
         <div class="ui-grid ui-grid-responsive">
             <div class="ui-grid-row">
                 <div class="ui-grid-col-3"/>
@@ -23,10 +23,8 @@
                             <p:message for="name" />
 
                             <h:outputLabel for="phone" value="Phone:" />
-                            <p:inputText id="phone" value="#{pacientBean.registeredPacient.phone}" label="phone"
-                                         required="true" requiredMessage="Phone is required!">
-                                <f:validateLength minimum="8" maximum="20" />
-                            </p:inputText>
+                            <p:inputMask id="phone" value="#{pacientBean.registeredPacient.phone}" mask="(999) 9999-9999"
+                                         label="phone" required="true" requiredMessage="Phone is required!"/>
                             <p:message for="phone" />
 
                             <h:outputLabel for="address" value="Address:" />
@@ -43,7 +41,7 @@
                                         value="#{pacientBean.registeredPacient.birthDate}"/>
                             <p:message for="birthDate" />             
 
-                            <p:commandButton value="Cancel" onclick="PF('dialogRegisterPacient').hide();" styleClass="ui-priority-primary"/>
+                            <p:commandButton value="Cancel" oncomplete="PF('dialogRegisterPacient').hide();" styleClass="ui-priority-primary"/>
                             <p:commandButton value="Register" update="form-pac:pacientTable growlRegisterPacient @form" actionListener="#{pacientBean.registerPacient()}" icon="ui-icon-check" validateClient="true"/>
                         </h:panelGrid>
                     </h:form>

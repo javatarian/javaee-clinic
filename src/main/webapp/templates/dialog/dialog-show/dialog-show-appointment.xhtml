@@ -10,24 +10,44 @@
         <p:outputPanel id="appointmentDetails" style="text-align:center;">
             <h:form>
                 <p:growl id="growlShowAppointment" life="2000" />
-                
+
                 <p:inputText value="#{appointmentBean.pickedAppointment.id}" type="hidden"/>
-                
-                <p:panelGrid  columns="2" columnClasses="label,value">
 
-                    <h:outputText value="Date: " />
-                    <h:inputText value="#{appointmentBean.pickedAppointment.appointmentDate}" />
+                <p:panelGrid  columns="3">
 
-                    <h:outputText value="Pacient: " />
-                    <h:inputText value="#{appointmentBean.pickedAppointment.pacient.name}" />
+                    <h:outputLabel for="pacient" value="Pacient: " />
+                    <p:selectOneMenu id="pacient" value="#{appointmentBean.pickedAppointment.pacient}"
+                                     converter="pacientConverter" required="true"
+                                     requiredMessage="Paciente is required!">
+                        <f:selectItem itemLabel="Select the Pacient" noSelectionOption="true" />
+                        <f:selectItems var="pacient" itemLabel="#{pacient.name}" itemValue="#{pacient}" value="#{pacientBean.pacients}" />
+                    </p:selectOneMenu>
+                    <p:message for="pacient" />
 
-                    <h:outputText value="Doctor: " />
-                    <h:inputText value="#{appointmentBean.pickedAppointment.doctor.name}"/>
+                    <h:outputLabel for="doctor" value="Doctor:" />
+                    <p:selectOneMenu id="doctor" value="#{appointmentBean.pickedAppointment.doctor}"
+                                     converter="doctorConverter" required="true"
+                                     requiredMessage="Doctor is required!">
+                        <f:selectItem itemLabel="Select the Doctor" noSelectionOption="true" />
+                        <f:selectItems var="doctor" itemLabel="#{doctor.name}" itemValue="#{doctor}" value="#{doctorBean.doctors}"/>
+                    </p:selectOneMenu>
+                    <p:message for="doctor" />
 
-                    <h:outputText value="Healthcare Plan: " />
-                    <h:inputText value="#{appointmentBean.pickedAppointment.healthcarePlan}"/>
-                    
-                    <p:commandButton value="Cancel" onclick="PF('dialogShowAppointment').hide();" styleClass="ui-priority-primary"/>
+                    <h:outputLabel for="healthcarePlan" value="Healthcare Plan:" />
+                    <p:inputText id="healthcarePlan" value="#{appointmentBean.pickedAppointment.healthcarePlan}" label="healthcarePlan"
+                                 required="true" requiredMessage="Healthcare Plan is required!">
+                        <f:validateLength maximum="20" />
+                    </p:inputText>
+                    <p:message for="healthcarePlan" />
+
+                    <h:outputLabel for="appointmentDate" value="Appointment Date:" />
+                    <p:calendar id="appointmentDate" converter="localDateTimeConverter"
+                                mask="true" navigator="true" pattern="dd-MM-yyyy HH:mm" required="true" 
+                                requiredMessage="Appointment Date is required!"
+                                value="#{appointmentBean.pickedAppointment.appointmentDate}"/>
+                    <p:message for="appointmentDate" />
+
+                    <p:commandButton value="Cancel" oncomplete="PF('dialogShowAppointment').hide();" styleClass="ui-priority-primary"/>
                     <p:commandButton value="Edit" update=":form-appo growlShowAppointment" actionListener="#{appointmentBean.editAppointment()}" icon="ui-icon-check" validateClient="true"/>
                 </p:panelGrid>
             </h:form>
