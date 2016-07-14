@@ -11,10 +11,10 @@ import com.gmatuella.clinic.entity.Secretary;
 import com.gmatuella.clinic.service.AdministratorService;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.service.SecretaryService;
+import com.gmatuella.clinic.util.ClinicUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.validation.constraints.Size;
@@ -27,6 +27,8 @@ import javax.validation.constraints.Size;
 @SessionScoped
 public class SessionBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+    
     @Size(min = 4, max = 20)
     private String login;
 
@@ -68,13 +70,9 @@ public class SessionBean implements Serializable {
                 return "dashboard.xhtml?faces-redirect=true";
             }
         }
-        addMessage("Invalid User and/or Password!"); //Retornar algo que não refresh a pag
+        ClinicUtil.getInstance().addMessage("Invalid User and/or Password!");
+        //This return is WRONG! The page mustn't refresh
         return "";
-    }
-
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public String logout() {
@@ -133,5 +131,4 @@ public class SessionBean implements Serializable {
     public void setLogged(Boolean logged) {
         this.logged = logged;
     }
-
 }

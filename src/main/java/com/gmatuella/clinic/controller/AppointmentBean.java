@@ -7,14 +7,12 @@ package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Appointment;
 import com.gmatuella.clinic.service.AppointmentService;
-import java.io.Serializable;
+import com.gmatuella.clinic.util.ClinicUtil;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
@@ -25,9 +23,7 @@ import org.primefaces.event.SelectEvent;
  */
 @Named
 @RequestScoped
-public class AppointmentBean implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class AppointmentBean {
 
     private Appointment pickedAppointment, registeredAppointment;
     private List<Appointment> appointments, doneAppointments, filteredAppointments;
@@ -48,7 +44,7 @@ public class AppointmentBean implements Serializable {
 
         RequestContext requestContext = RequestContext.getCurrentInstance();
         requestContext.execute("PF('dialogRegisterAppointment').hide()");
-        addMessage("Appointment successfully registered!");
+        ClinicUtil.getInstance().addMessage("Appointment successfully registered!");
     }
 
     public void editAppointment() {
@@ -59,16 +55,10 @@ public class AppointmentBean implements Serializable {
 //        long diferencaDeTempo = Duration.between(consulta.getDataConsulta(), LocalDateTime.now()).getSeconds();
         long diferencaDeTempo = 1000L;
         if (diferencaDeTempo < 1800) {
-            RequestContext requestContext = RequestContext.getCurrentInstance();
-            requestContext.execute("PF('dialogOpenAppointment').show()");
+            ClinicUtil.getInstance().executeOnContext("PF('dialogOpenAppointment').show()");
         } else {
-            addMessage("It wasn't possible to open the appointment!");
+            ClinicUtil.getInstance().addMessage("It wasn't possible to open the appointment!");
         }
-    }
-
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
     public void onRowSelect(SelectEvent event) {

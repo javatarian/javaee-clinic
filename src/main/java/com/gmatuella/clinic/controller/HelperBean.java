@@ -15,12 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.faces.application.FacesMessage;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -29,7 +25,7 @@ import org.primefaces.context.RequestContext;
 @Named
 @RequestScoped
 public class HelperBean {
-
+    
     public HelperBean() {
     }
 
@@ -73,7 +69,7 @@ public class HelperBean {
         return "analytics.xhtml?faces-redirect=true";
     }
 
-    public String criarMedicos() {
+    public String generateDoctors() {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Doctor medTeste = new Doctor();
@@ -89,7 +85,7 @@ public class HelperBean {
         return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String criarPacientes() {
+    public String generatePacients() {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Pacient pacTeste = new Pacient();
@@ -102,7 +98,7 @@ public class HelperBean {
         return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String criarSecretarias() {
+    public String generateSecretaries() {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Secretary secTeste = new Secretary();
@@ -115,20 +111,5 @@ public class HelperBean {
             new SecretaryService().save(secTeste);
         }
         return "dashboard.xhtml?faces-redirect=true";
-    }
-
-    public void buttonAction(ActionEvent actionEvent) {
-        addMessage("Pacient successfully registered!");
-    }
-
-    public void buttonAction2(ActionEvent actionEvent) {
-        RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogCadastroFuncionario').hide();");
-        addMessage("Funcionário cadastrado com sucesso!");
-    }
-
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
     }
 }

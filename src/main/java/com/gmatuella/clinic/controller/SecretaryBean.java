@@ -7,13 +7,11 @@ package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Secretary;
 import com.gmatuella.clinic.service.SecretaryService;
+import com.gmatuella.clinic.util.ClinicUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -23,7 +21,7 @@ import org.primefaces.event.SelectEvent;
 @Named
 @RequestScoped
 public class SecretaryBean {
-
+    
     private Secretary registeredSecretary, pickedSecretary;
     private List<Secretary> secretaries, filteredSecretaries;
 
@@ -40,22 +38,16 @@ public class SecretaryBean {
         secretaries = new SecretaryService().findAll();
         registeredSecretary = new Secretary();
         
-        RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogRegisterSecretary').hide();");
-        addMessage("Secretary successfully registered!");
+        ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterSecretary').hide();");
+        ClinicUtil.getInstance().addMessage("Secretary successfully registered!");
     }
 
     public void editSecretary() {
         new SecretaryService().update(pickedSecretary);
         secretaries = new SecretaryService().findAll();
-        RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dialogShowSecretary').hide();");
-        addMessage("Secretary successfully edited!");
-    }
-
-    public void addMessage(String summary) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
-        FacesContext.getCurrentInstance().addMessage(null, message);
+        
+        ClinicUtil.getInstance().executeOnContext("PF('dialogShowSecretary').hide();");
+        ClinicUtil.getInstance().addMessage("Secretary successfully edited!");
     }
 
     public void onRowSelect(SelectEvent event) {
