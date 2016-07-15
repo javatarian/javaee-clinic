@@ -32,13 +32,13 @@ public class DoctorBean {
     public void init() {
         registeredDoctor = new Doctor();
         pickedDoctor = new Doctor();
-        doctors = doctorService.findAll();
+        doctors = doctorService.findAllActive();
     }
 
     public void registerDoctor() {
         registeredDoctor.setStatus(Boolean.TRUE);
         doctorService.save(registeredDoctor);
-        doctors = doctorService.findAll();
+        doctors = doctorService.findAllActive();
 
         ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterDoctor').hide();");
         ClinicUtil.getInstance().addMessage("Doctor successfully registered!");
@@ -52,7 +52,7 @@ public class DoctorBean {
         ClinicUtil.getInstance().addMessage("Doctor sucessfully edited!");
     }
 
-    public void deleteDoctor() {
+    public void deactivateDoctor() {
         doctorService.delete(pickedDoctor);
         doctors = doctorService.findAll();
 
