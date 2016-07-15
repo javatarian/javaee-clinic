@@ -27,12 +27,14 @@ public class SecretaryBean {
     
     private Secretary registeredSecretary, pickedSecretary;
     private List<Secretary> secretaries, filteredSecretaries;
+    private ClinicUtil clinicUtil;
 
     @PostConstruct
     public void init() {
         registeredSecretary = new Secretary();
         pickedSecretary = new Secretary();
         secretaries = secretaryService.findAll();
+        clinicUtil = ClinicUtil.getInstance();
     }
 
     public void registerSecretary() {
@@ -41,16 +43,16 @@ public class SecretaryBean {
         secretaries = secretaryService.findAll();
         registeredSecretary = new Secretary();
         
-        ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterSecretary').hide();");
-        ClinicUtil.getInstance().addMessage("Secretary successfully registered!");
+        clinicUtil.executeOnContext("PF('dialogRegisterSecretary').hide();");
+        clinicUtil.addMessage("Secretary successfully registered!");
     }
 
     public void editSecretary() {
         secretaryService.update(pickedSecretary);
         secretaries = secretaryService.findAll();
         
-        ClinicUtil.getInstance().executeOnContext("PF('dialogShowSecretary').hide();");
-        ClinicUtil.getInstance().addMessage("Secretary successfully edited!");
+        clinicUtil.executeOnContext("PF('dialogShowSecretary').hide();");
+        clinicUtil.addMessage("Secretary successfully edited!");
     }
 
     public Secretary getRegisteredSecretary() {

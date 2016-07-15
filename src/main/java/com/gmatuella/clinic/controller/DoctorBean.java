@@ -27,12 +27,14 @@ public class DoctorBean {
     
     private Doctor registeredDoctor, pickedDoctor;
     private List<Doctor> doctors, filteredDoctors;
+    private ClinicUtil clinicUtil;
 
     @PostConstruct
     public void init() {
         registeredDoctor = new Doctor();
         pickedDoctor = new Doctor();
         doctors = doctorService.findAllActive();
+        clinicUtil = ClinicUtil.getInstance();
     }
 
     public void registerDoctor() {
@@ -41,24 +43,20 @@ public class DoctorBean {
         doctors = doctorService.findAllActive();
         registeredDoctor = new Doctor();
         
-        ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterDoctor').hide();");
-        ClinicUtil.getInstance().addMessage("Doctor successfully registered!");
+        clinicUtil.executeOnContext("PF('dialogRegisterDoctor').hide();");
+        clinicUtil.addMessage("Doctor successfully registered!");
     }
 
     public void editDoctor() {
         doctorService.update(pickedDoctor);
         doctors = doctorService.findAll();
 
-        ClinicUtil.getInstance().executeOnContext("PF('dialogShowDoctor').hide();");
-        ClinicUtil.getInstance().addMessage("Doctor sucessfully edited!");
+        clinicUtil.executeOnContext("PF('dialogShowDoctor').hide();");
+        clinicUtil.addMessage("Doctor sucessfully edited!");
     }
 
     public void deactivateDoctor() {
-        doctorService.delete(pickedDoctor);
-        doctors = doctorService.findAll();
-
-        ClinicUtil.getInstance().executeOnContext("PF('dialogShowDoctor').hide();");
-        ClinicUtil.getInstance().addMessage("Doctor sucessfully removed!");
+        //Not implemented yet!
     }
 
     public Doctor getRegisteredDoctor() {

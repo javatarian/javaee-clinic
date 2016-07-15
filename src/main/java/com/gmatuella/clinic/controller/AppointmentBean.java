@@ -49,10 +49,11 @@ public class AppointmentBean {
     }
 
     public void editAppointment() {
-
+        //Not implemented yet!!!
     }
 
     public void openAppointment(Appointment consulta) {
+        //Not implemented yet!!!
 //        long diferencaDeTempo = Duration.between(consulta.getDataConsulta(), LocalDateTime.now()).getSeconds();
         long diferencaDeTempo = 1000L;
         if (diferencaDeTempo < 1800) {

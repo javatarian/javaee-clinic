@@ -27,12 +27,14 @@ public class PacientBean {
     
     private Pacient registeredPacient, pickedPacient;
     private List<Pacient> pacients, filteredPacients;
+    private ClinicUtil clinicUtil;
 
     @PostConstruct
     public void init() {
         registeredPacient = new Pacient();
         pickedPacient = new Pacient();
         pacients = pacientService.findAll();
+        clinicUtil = ClinicUtil.getInstance();
     }
 
     public void registerPacient() {
@@ -40,16 +42,16 @@ public class PacientBean {
         pacients = pacientService.findAll();
         registeredPacient = new Pacient();
         
-        ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterPacient').hide();");
-        ClinicUtil.getInstance().addMessage("Pacient successfully registered!");
+        clinicUtil.executeOnContext("PF('dialogRegisterPacient').hide();");
+        clinicUtil.addMessage("Pacient successfully registered!");
     }
 
     public void editPacient() {
         pacientService.update(pickedPacient);
         pacients = pacientService.findAll();
 
-        ClinicUtil.getInstance().executeOnContext("PF('dialogShowPacient').hide();");
-        ClinicUtil.getInstance().addMessage("Pacient successfully edited!");
+        clinicUtil.executeOnContext("PF('dialogShowPacient').hide();");
+        clinicUtil.addMessage("Pacient successfully edited!");
     }
     
     public Pacient getRegisteredPacient() {

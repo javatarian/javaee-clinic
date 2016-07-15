@@ -14,6 +14,7 @@ import com.gmatuella.clinic.service.SecretaryService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -28,7 +29,16 @@ import javax.validation.constraints.Size;
 public class SessionBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
+    @EJB
+    private AdministratorService administratorService;
+
+    @EJB
+    private DoctorService doctorService;
+
+    @EJB
+    private SecretaryService secretaryService;
+
     @Size(min = 4, max = 20)
     private String login;
 
@@ -46,24 +56,21 @@ public class SessionBean implements Serializable {
     }
 
     public String logIn() {
-        SecretaryService secService = new SecretaryService();
-        for (Secretary registeredSecretary : secService.findAll()) {
+        for (Secretary registeredSecretary : secretaryService.findAll()) {
             if (registeredSecretary.getLogin().equals(login) && registeredSecretary.getPassword().equals(password)) {
                 secretary = registeredSecretary;
                 logged = true;
                 return "appointments.xhtml?faces-redirect=true";
             }
         }
-        DoctorService docService = new DoctorService();
-        for (Doctor registeredDoctor : docService.findAll()) {
+        for (Doctor registeredDoctor : doctorService.findAll()) {
             if (registeredDoctor.getLogin().equals(login) && registeredDoctor.getPassword().equals(password)) {
                 doctor = registeredDoctor;
                 logged = true;
                 return "appointments.xhtml?faces-redirect=true";
             }
         }
-        AdministratorService admService = new AdministratorService();
-        for (Administrator registeredAdministrator : admService.findAll()) {
+        for (Administrator registeredAdministrator : administratorService.findAll()) {
             if (registeredAdministrator.getLogin().equals(login) && registeredAdministrator.getPassword().equals(password)) {
                 administrator = registeredAdministrator;
                 logged = true;
