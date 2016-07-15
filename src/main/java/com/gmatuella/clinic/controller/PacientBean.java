@@ -10,9 +10,9 @@ import com.gmatuella.clinic.service.PacientService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -22,6 +22,9 @@ import org.primefaces.event.SelectEvent;
 @RequestScoped
 public class PacientBean {
     
+    @EJB
+    private PacientService pacientService;
+    
     private Pacient registeredPacient, pickedPacient;
     private List<Pacient> pacients, filteredPacients;
 
@@ -29,21 +32,21 @@ public class PacientBean {
     public void init() {
         registeredPacient = new Pacient();
         pickedPacient = new Pacient();
-        pacients = new PacientService().findAll();
+        pacients = pacientService.findAll();
     }
 
     public void registerPacient() {
-        new PacientService().save(registeredPacient);
-        pacients = new PacientService().findAll();
+        pacientService.save(registeredPacient);
+        pacients = pacientService.findAll();
         registeredPacient = new Pacient();
-
+        
         ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterPacient').hide();");
         ClinicUtil.getInstance().addMessage("Pacient successfully registered!");
     }
 
     public void editPacient() {
-        new PacientService().update(pickedPacient);
-        pacients = new PacientService().findAll();
+        pacientService.update(pickedPacient);
+        pacients = pacientService.findAll();
 
         ClinicUtil.getInstance().executeOnContext("PF('dialogShowPacient').hide();");
         ClinicUtil.getInstance().addMessage("Pacient successfully edited!");

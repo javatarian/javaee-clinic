@@ -8,10 +8,10 @@ package com.gmatuella.clinic.controller;
 import com.gmatuella.clinic.entity.Appointment;
 import com.gmatuella.clinic.service.AppointmentService;
 import com.gmatuella.clinic.util.ClinicUtil;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
@@ -23,26 +23,27 @@ import javax.inject.Named;
 @RequestScoped
 public class AppointmentBean {
 
+    @EJB
+    private AppointmentService appointmentService;
+    
     private Appointment pickedAppointment, registeredAppointment;
-    private List<Appointment> appointments, doneAppointments, filteredAppointments;
-    private String testeString;
-    private LocalDateTime testeldt;
+    private List<Appointment> appointments, filteredAppointments;
     private ClinicUtil clinicUtil;
 
     @PostConstruct
     public void init() {
         registeredAppointment = new Appointment();
         pickedAppointment = new Appointment();
-        appointments = new AppointmentService().findAll();
+        appointments = appointmentService.findAll();
         clinicUtil = ClinicUtil.getInstance();
     }
 
     public void registerAppointment() {
         registeredAppointment.setStatus(Boolean.TRUE);
-        new AppointmentService().save(registeredAppointment);
-        appointments = new AppointmentService().findAll();
+        appointmentService.save(registeredAppointment);
+        appointments = appointmentService.findAll();
+        registeredAppointment = new Appointment();
         
-
         clinicUtil.executeOnContext("PF('dialogRegisterAppointment').hide()");
         clinicUtil.addMessage("Appointment successfully registered!");
     }
@@ -81,35 +82,11 @@ public class AppointmentBean {
         this.registeredAppointment = registeredAppointment;
     }
 
-    public String getTesteString() {
-        return testeString;
-    }
-
-    public void setTesteString(String testeString) {
-        this.testeString = testeString;
-    }
-
     public List<Appointment> getFilteredAppointments() {
         return filteredAppointments;
     }
 
     public void setFilteredAppointments(List<Appointment> filteredAppointments) {
         this.filteredAppointments = filteredAppointments;
-    }
-
-    public List<Appointment> getDoneAppointments() {
-        return doneAppointments;
-    }
-
-    public void setDoneAppointments(List<Appointment> doneAppointments) {
-        this.doneAppointments = doneAppointments;
-    }
-
-    public LocalDateTime getTesteldt() {
-        return testeldt;
-    }
-
-    public void setTesteldt(LocalDateTime testeldt) {
-        this.testeldt = testeldt;
     }
 }

@@ -10,9 +10,9 @@ import com.gmatuella.clinic.service.SecretaryService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -22,6 +22,9 @@ import org.primefaces.event.SelectEvent;
 @RequestScoped
 public class SecretaryBean {
     
+    @EJB
+    private SecretaryService secretaryService;
+    
     private Secretary registeredSecretary, pickedSecretary;
     private List<Secretary> secretaries, filteredSecretaries;
 
@@ -29,13 +32,13 @@ public class SecretaryBean {
     public void init() {
         registeredSecretary = new Secretary();
         pickedSecretary = new Secretary();
-        secretaries = new SecretaryService().findAll();
+        secretaries = secretaryService.findAll();
     }
 
     public void registerSecretary() {
         registeredSecretary.setStatus(Boolean.TRUE);
-        new SecretaryService().save(registeredSecretary);
-        secretaries = new SecretaryService().findAll();
+        secretaryService.save(registeredSecretary);
+        secretaries = secretaryService.findAll();
         registeredSecretary = new Secretary();
         
         ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterSecretary').hide();");
@@ -43,8 +46,8 @@ public class SecretaryBean {
     }
 
     public void editSecretary() {
-        new SecretaryService().update(pickedSecretary);
-        secretaries = new SecretaryService().findAll();
+        secretaryService.update(pickedSecretary);
+        secretaries = secretaryService.findAll();
         
         ClinicUtil.getInstance().executeOnContext("PF('dialogShowSecretary').hide();");
         ClinicUtil.getInstance().addMessage("Secretary successfully edited!");

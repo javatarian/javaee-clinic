@@ -13,7 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -25,6 +24,7 @@ public class DoctorBean {
 
     @EJB
     private DoctorService doctorService;
+    
     private Doctor registeredDoctor, pickedDoctor;
     private List<Doctor> doctors, filteredDoctors;
 
@@ -39,7 +39,8 @@ public class DoctorBean {
         registeredDoctor.setStatus(Boolean.TRUE);
         doctorService.save(registeredDoctor);
         doctors = doctorService.findAllActive();
-
+        registeredDoctor = new Doctor();
+        
         ClinicUtil.getInstance().executeOnContext("PF('dialogRegisterDoctor').hide();");
         ClinicUtil.getInstance().addMessage("Doctor successfully registered!");
     }

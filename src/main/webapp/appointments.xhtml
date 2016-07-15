@@ -16,12 +16,6 @@
             </ui:insert>
         </div>
         <div id="main" class="em-085">
-            <h:form>
-                <h:outputText id="display" value="#{appointmentBean.testeldt}">
-                    <f:converter converterId="localDateTimeConverter" />
-                    <f:attribute name="pattern" value="dd-MM-yyyy HH:mm" />
-                </h:outputText>
-            </h:form>
             <ui:insert name="main">
                 <ui:include src="templates/area-appointment.xhtml"/>              
             </ui:insert>
