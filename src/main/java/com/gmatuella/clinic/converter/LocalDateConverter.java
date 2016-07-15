@@ -21,7 +21,7 @@ public class LocalDateConverter implements javax.faces.convert.Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value != null && !value.isEmpty()) {
-            return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return LocalDate.parse(value, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
         return null;
     }
@@ -30,7 +30,7 @@ public class LocalDateConverter implements javax.faces.convert.Converter {
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value != null && value instanceof LocalDate) {
             LocalDate dateValue = (LocalDate) value;
-            return dateValue.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            return dateValue.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         }
         return "";
     }

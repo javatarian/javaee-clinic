@@ -10,7 +10,7 @@
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,20,50" selectionMode="single" selection="#{pacientBean.pickedPacient}" id="pacientTable"
                      filteredValue="#{pacientBean.filteredPacients}" widgetVar="pacientTable" emptyMessage="No pacient was found">
-            <p:ajax event="rowSelect" listener="#{pacientBean.onRowSelect}" update="@(.dialogPacient) @this" oncomplete="PF('dialogShowPacient').show()" />
+            <p:ajax event="rowSelect" update="@(.dialogPacient) @this" oncomplete="PF('dialogShowPacient').show()" />
 
             <f:facet name="header">
                 <p class="font-title">Pacients</p>

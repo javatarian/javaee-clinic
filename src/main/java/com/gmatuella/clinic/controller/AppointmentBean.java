@@ -14,7 +14,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 
 /**
@@ -29,22 +28,24 @@ public class AppointmentBean {
     private List<Appointment> appointments, doneAppointments, filteredAppointments;
     private String testeString;
     private LocalDateTime testeldt;
+    private ClinicUtil clinicUtil;
 
     @PostConstruct
     public void init() {
         registeredAppointment = new Appointment();
         pickedAppointment = new Appointment();
         appointments = new AppointmentService().findAll();
+        clinicUtil = ClinicUtil.getInstance();
     }
 
     public void registerAppointment() {
+        registeredAppointment.setStatus(Boolean.TRUE);
         new AppointmentService().save(registeredAppointment);
         appointments = new AppointmentService().findAll();
-        registeredAppointment = new Appointment();
+        
 
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        requestContext.execute("PF('dialogRegisterAppointment').hide()");
-        ClinicUtil.getInstance().addMessage("Appointment successfully registered!");
+        clinicUtil.executeOnContext("PF('dialogRegisterAppointment').hide()");
+        clinicUtil.addMessage("Appointment successfully registered!");
     }
 
     public void editAppointment() {
@@ -55,13 +56,10 @@ public class AppointmentBean {
 //        long diferencaDeTempo = Duration.between(consulta.getDataConsulta(), LocalDateTime.now()).getSeconds();
         long diferencaDeTempo = 1000L;
         if (diferencaDeTempo < 1800) {
-            ClinicUtil.getInstance().executeOnContext("PF('dialogOpenAppointment').show()");
+            clinicUtil.executeOnContext("PF('dialogOpenAppointment').show()");
         } else {
-            ClinicUtil.getInstance().addMessage("It wasn't possible to open the appointment!");
+            clinicUtil.addMessage("It wasn't possible to open the appointment!");
         }
-    }
-
-    public void onRowSelect(SelectEvent event) {
     }
 
     public Appointment getPickedAppointment() {

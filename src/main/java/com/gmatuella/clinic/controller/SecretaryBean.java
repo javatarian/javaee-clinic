@@ -50,9 +50,6 @@ public class SecretaryBean {
         ClinicUtil.getInstance().addMessage("Secretary successfully edited!");
     }
 
-    public void onRowSelect(SelectEvent event) {
-    }
-
     public Secretary getRegisteredSecretary() {
         return registeredSecretary;
     }

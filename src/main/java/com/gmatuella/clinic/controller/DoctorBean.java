@@ -60,9 +60,6 @@ public class DoctorBean {
         ClinicUtil.getInstance().addMessage("Doctor sucessfully removed!");
     }
 
-    public void onRowSelect(SelectEvent event) {
-    }
-
     public Doctor getRegisteredDoctor() {
         return registeredDoctor;
     }

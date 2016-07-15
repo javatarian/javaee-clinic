@@ -10,7 +10,7 @@
                      paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                      rowsPerPageTemplate="5,10,20,50" selectionMode="single" selection="#{appointmentBean.pickedAppointment}" id="appointmentTable"
                      filteredValue="#{appointmentBean.filteredAppointments}" widgetVar="appointmentTable" emptyMessage="No appointment was found">
-            <p:ajax event="rowSelect" listener="#{appointmentBean.onRowSelect}" update="@(.dialogAppointment) @this" oncomplete="PF('dialogShowAppointment').show()" />
+            <p:ajax event="rowSelect" update="@(.dialogAppointment) @this" oncomplete="PF('dialogShowAppointment').show()" />
 
             <f:facet name="header">
                 <p class="font-title">Appointments</p>

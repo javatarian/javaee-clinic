@@ -48,10 +48,7 @@ public class PacientBean {
         ClinicUtil.getInstance().executeOnContext("PF('dialogShowPacient').hide();");
         ClinicUtil.getInstance().addMessage("Pacient successfully edited!");
     }
-
-    public void onRowSelect(SelectEvent event) {
-    }
-
+    
     public Pacient getRegisteredPacient() {
         return registeredPacient;
     }

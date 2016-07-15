@@ -39,6 +39,9 @@ public class Appointment implements Serializable {
     @Column(name = "appointment_date", nullable = false)
     private LocalDateTime appointmentDate;
 
+    @Column(nullable = false)
+    private Boolean status;
+
     @Column(nullable = true)
     private String observations;
 
@@ -46,12 +49,13 @@ public class Appointment implements Serializable {
 
     }
 
-    public Appointment(Long id, Pacient pacient, Doctor doctor, String healthcarePlan, LocalDateTime appointmentDate, String observations) {
+    public Appointment(Long id, Pacient pacient, Doctor doctor, String healthcarePlan, LocalDateTime appointmentDate, Boolean status, String observations) {
         this.id = id;
         this.pacient = pacient;
         this.doctor = doctor;
         this.healthcarePlan = healthcarePlan;
         this.appointmentDate = appointmentDate;
+        this.status = status;
         this.observations = observations;
     }
 
@@ -95,6 +99,14 @@ public class Appointment implements Serializable {
         this.appointmentDate = appointmentDate;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     public String getObservations() {
         return observations;
     }
@@ -106,12 +118,13 @@ public class Appointment implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + Objects.hashCode(this.pacient);
-        hash = 89 * hash + Objects.hashCode(this.doctor);
-        hash = 89 * hash + Objects.hashCode(this.healthcarePlan);
-        hash = 89 * hash + Objects.hashCode(this.appointmentDate);
-        hash = 89 * hash + Objects.hashCode(this.observations);
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.pacient);
+        hash = 31 * hash + Objects.hashCode(this.doctor);
+        hash = 31 * hash + Objects.hashCode(this.healthcarePlan);
+        hash = 31 * hash + Objects.hashCode(this.appointmentDate);
+        hash = 31 * hash + Objects.hashCode(this.status);
+        hash = 31 * hash + Objects.hashCode(this.observations);
         return hash;
     }
 
@@ -128,6 +141,9 @@ public class Appointment implements Serializable {
         }
         final Appointment other = (Appointment) obj;
         if (!Objects.equals(this.healthcarePlan, other.healthcarePlan)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
             return false;
         }
         if (!Objects.equals(this.observations, other.observations)) {
@@ -150,6 +166,6 @@ public class Appointment implements Serializable {
 
     @Override
     public String toString() {
-        return "Appointment{" + "id=" + id + ", pacient=" + pacient + ", doctor=" + doctor + ", healthcarePlan=" + healthcarePlan + ", appointmentDate=" + appointmentDate + ", observations=" + observations + '}';
+        return "Appointment{" + "id=" + id + ", pacient=" + pacient + ", doctor=" + doctor + ", healthcarePlan=" + healthcarePlan + ", appointmentDate=" + appointmentDate + ", status=" + status + ", observations=" + observations + '}';
     }
 }

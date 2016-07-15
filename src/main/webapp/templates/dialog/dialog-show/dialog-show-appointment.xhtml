@@ -42,7 +42,7 @@
 
                     <h:outputLabel for="appointmentDate" value="Appointment Date:" />
                     <p:calendar id="appointmentDate" converter="localDateTimeConverter"
-                                mask="true" navigator="true" pattern="dd-MM-yyyy HH:mm" required="true" 
+                                mask="true" navigator="true" pattern="dd/MM/yyyy HH:mm" required="true" 
                                 requiredMessage="Appointment Date is required!"
                                 value="#{appointmentBean.pickedAppointment.appointmentDate}"/>
                     <p:message for="appointmentDate" />
