@@ -49,7 +49,11 @@ public class AppointmentBean {
     }
 
     public void editAppointment() {
-        //Not implemented yet!!!
+        appointmentService.update(pickedAppointment);
+        appointments = appointmentService.findAll();
+
+        clinicUtil.executeOnContext("PF('dialogShowAppointment').hide();");
+        clinicUtil.addMessage("Appointment sucessfully edited!");
     }
 
     public void openAppointment(Appointment consulta) {
