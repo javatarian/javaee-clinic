@@ -22,13 +22,13 @@ JavaEE project with the purpose of creating a sort of **Clinic Management System
 ---
 ## Details about the project
 
+- Hashed the password into the database using PBKDF2 with Salt and HMAC-SHA1;
 - Singletons to manage some "utilities";
-- Focusing on making a UI responsive enough to Desktop/Tablet (you won't manage this kind of stuff on a mobile, right?);
-- Filters used to manage the respective users access permissions (and some containers only render for certain users);
+- Filters to manage the respective users access permissions (and some containers only render for certain users);
 - Converters to control some input/outputs, like Dates and Entities;
+- Focusing on making a UI responsive enough to Desktop/Tablet;
 - Some entities may extend a mapped superclass, like Secretary and Doctor;
 - Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
-- Hashed the password into the database using PBKDF2 with Salt and HMAC-SHA1;
 - Kind of different GenericService without using the DAO layer/pattern.
 
 ---
