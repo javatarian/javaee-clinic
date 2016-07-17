@@ -7,7 +7,7 @@
               xmlns:f="http://xmlns.jcp.org/jsf/core">
     <p:dialog header="Pacient Details" widgetVar="dialogShowPacient" closeOnEscape="true" draggable="true"
               resizable="false" modal="true" showEffect="fade" hideEffect="fade" styleClass="dialogPacient">
-        <p:outputPanel id="pacientDetails" style="text-align:center;">
+        <p:outputPanel id="pacientDetails">
             <h:form>
                 <p:growl id="growlShowPacient" life="2000" />
 
@@ -44,7 +44,7 @@
                     <p:message for="birthDate" />  
 
                     <p:commandButton value="Cancel" onclick="PF('dialogShowPacient').hide();" styleClass="ui-priority-primary"/>
-                    <p:commandButton value="Edit" update="form-pac:pacientTable growlShowPacient" actionListener="#{pacientBean.editPacient()}" icon="ui-icon-check" validateClient="true"/>
+                    <p:commandButton value="Edit" update="form-pac:pacientTable growlShowPacient @form" actionListener="#{pacientBean.editPacient()}" icon="ui-icon-check" validateClient="true"/>
                 </p:panelGrid>
             </h:form>
         </p:outputPanel>

@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -20,8 +21,8 @@ public class Secretary extends User implements Serializable {
     public Secretary() {
     }
 
-    public Secretary(Long id, String name, String phone, String address, String login, String password, Boolean status) {
-        super(id, name, phone, address, login, password, status);
+    public Secretary(Long id, String name, String phone, String address, LocalDate birthDate, String login, String password, Boolean status) {
+        super(id, name, phone, address, birthDate, login, password, status);
     }
 
 }

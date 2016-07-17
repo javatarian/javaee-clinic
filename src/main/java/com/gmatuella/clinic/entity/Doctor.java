@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -40,8 +41,8 @@ public class Doctor extends User implements Serializable {
     public Doctor() {
     }
 
-    public Doctor(String specialties, Long id, String name, String phone, String address, String login, String password, Boolean status) {
-        super(id, name, phone, address, login, password, status);
+    public Doctor(String specialties, Long id, String name, String phone, String address, LocalDate birthDate, String login, String password, Boolean status) {
+        super(id, name, phone, address, birthDate, login, password, status);
         this.specialties = specialties;
     }
 

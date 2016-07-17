@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,8 @@ public class User implements Serializable {
     private String phone;
     @Column(nullable = false)
     private String address;
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
     @Column(nullable = false)
     private String login;
     @Column(nullable = false)
@@ -40,16 +43,17 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(Long id, String name, String phone, String address, String login, String password, Boolean status) {
+    public User(Long id, String name, String phone, String address, LocalDate birthDate, String login, String password, Boolean status) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.address = address;
+        this.birthDate = birthDate;
         this.login = login;
         this.password = password;
         this.status = status;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -82,6 +86,14 @@ public class User implements Serializable {
         this.address = address;
     }
 
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -108,14 +120,15 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.name);
-        hash = 53 * hash + Objects.hashCode(this.phone);
-        hash = 53 * hash + Objects.hashCode(this.address);
-        hash = 53 * hash + Objects.hashCode(this.login);
-        hash = 53 * hash + Objects.hashCode(this.password);
-        hash = 53 * hash + Objects.hashCode(this.status);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Objects.hashCode(this.phone);
+        hash = 79 * hash + Objects.hashCode(this.address);
+        hash = 79 * hash + Objects.hashCode(this.birthDate);
+        hash = 79 * hash + Objects.hashCode(this.login);
+        hash = 79 * hash + Objects.hashCode(this.password);
+        hash = 79 * hash + Objects.hashCode(this.status);
         return hash;
     }
 
@@ -149,6 +162,9 @@ public class User implements Serializable {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
+        if (!Objects.equals(this.birthDate, other.birthDate)) {
+            return false;
+        }
         if (!Objects.equals(this.status, other.status)) {
             return false;
         }
@@ -157,7 +173,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", login=" + login + ", password=" + password + ", status=" + status + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", phone=" + phone + ", address=" + address + ", birthDate=" + birthDate + ", login=" + login + ", password=" + password + ", status=" + status + '}';
     }
-
 }
