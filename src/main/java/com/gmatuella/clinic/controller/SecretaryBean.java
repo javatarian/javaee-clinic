@@ -8,6 +8,7 @@ package com.gmatuella.clinic.controller;
 import com.gmatuella.clinic.entity.Secretary;
 import com.gmatuella.clinic.service.SecretaryService;
 import com.gmatuella.clinic.util.ClinicUtil;
+import com.gmatuella.clinic.util.SecurityUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -28,6 +29,7 @@ public class SecretaryBean {
     private Secretary registeredSecretary, pickedSecretary;
     private List<Secretary> secretaries, filteredSecretaries;
     private ClinicUtil clinicUtil;
+    private SecurityUtil securityUtil;
 
     @PostConstruct
     public void init() {
@@ -35,10 +37,13 @@ public class SecretaryBean {
         pickedSecretary = new Secretary();
         secretaries = secretaryService.findAll();
         clinicUtil = ClinicUtil.getInstance();
+        securityUtil = SecurityUtil.getInstance();
     }
 
     public void registerSecretary() {
         registeredSecretary.setStatus(Boolean.TRUE);
+        registeredSecretary.setPassword(securityUtil.createHash(registeredSecretary.getPassword()));
+
         secretaryService.save(registeredSecretary);
         secretaries = secretaryService.findAll();
         registeredSecretary = new Secretary();
@@ -55,7 +60,7 @@ public class SecretaryBean {
         clinicUtil.addMessage("Secretary successfully edited!");
     }
 
-    public void deactivateDoctor() {
+    public void deactivateSecretary() {
         pickedSecretary.setStatus(Boolean.FALSE);
         secretaryService.update(pickedSecretary);
         secretaries = secretaryService.findAllActive();

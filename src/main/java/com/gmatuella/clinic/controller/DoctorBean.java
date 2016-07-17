@@ -8,6 +8,7 @@ package com.gmatuella.clinic.controller;
 import com.gmatuella.clinic.entity.Doctor;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.util.ClinicUtil;
+import com.gmatuella.clinic.util.SecurityUtil;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -28,6 +29,7 @@ public class DoctorBean {
     private Doctor registeredDoctor, pickedDoctor;
     private List<Doctor> doctors, filteredDoctors;
     private ClinicUtil clinicUtil;
+    private SecurityUtil securityUtil;
 
     @PostConstruct
     public void init() {
@@ -35,10 +37,13 @@ public class DoctorBean {
         pickedDoctor = new Doctor();
         doctors = doctorService.findAllActive();
         clinicUtil = ClinicUtil.getInstance();
+        securityUtil = SecurityUtil.getInstance();
     }
 
     public void registerDoctor() {
         registeredDoctor.setStatus(Boolean.TRUE);
+        registeredDoctor.setPassword(securityUtil.createHash(registeredDoctor.getPassword()));
+        
         doctorService.save(registeredDoctor);
         doctors = doctorService.findAllActive();
         registeredDoctor = new Doctor();

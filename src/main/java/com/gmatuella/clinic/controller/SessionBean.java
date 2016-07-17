@@ -12,6 +12,7 @@ import com.gmatuella.clinic.service.AdministratorService;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.service.SecretaryService;
 import com.gmatuella.clinic.util.ClinicUtil;
+import com.gmatuella.clinic.util.SecurityUtil;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -39,39 +40,41 @@ public class SessionBean implements Serializable {
     @EJB
     private SecretaryService secretaryService;
 
-    @Size(min = 4, max = 20)
     private String login;
-
-    @Size(min = 4, max = 30)
     private String password;
-
     private Administrator administrator;
     private Doctor doctor;
     private Secretary secretary;
     private Boolean logged;
+    private SecurityUtil securityUtil;
 
     @PostConstruct
     public void init() {
         logged = Boolean.FALSE;
+        securityUtil = SecurityUtil.getInstance();
     }
 
     public String logIn() {
         for (Secretary registeredSecretary : secretaryService.findAll()) {
-            if (registeredSecretary.getLogin().equals(login) && registeredSecretary.getPassword().equals(password)) {
+            if (registeredSecretary.getLogin().equals(login) 
+                    && securityUtil.validatePassword(password, registeredSecretary.getPassword())) {
                 secretary = registeredSecretary;
                 logged = true;
                 return "appointments.xhtml?faces-redirect=true";
             }
         }
         for (Doctor registeredDoctor : doctorService.findAll()) {
-            if (registeredDoctor.getLogin().equals(login) && registeredDoctor.getPassword().equals(password)) {
+            if (registeredDoctor.getLogin().equals(login) 
+                    && securityUtil.validatePassword(password, registeredDoctor.getPassword())) {
                 doctor = registeredDoctor;
                 logged = true;
                 return "appointments.xhtml?faces-redirect=true";
             }
         }
         for (Administrator registeredAdministrator : administratorService.findAll()) {
-            if (registeredAdministrator.getLogin().equals(login) && registeredAdministrator.getPassword().equals(password)) {
+            //The admin isn't being verified for development reasons.
+            if (registeredAdministrator.getLogin().equals(login) 
+                    && registeredAdministrator.getPassword().equals(password)) {
                 administrator = registeredAdministrator;
                 logged = true;
                 return "dashboard.xhtml?faces-redirect=true";

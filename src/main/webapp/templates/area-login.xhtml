@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
     <div class="ui-grid ui-grid-responsive">
         <div class="ui-grid-row">
             <div class="ui-grid-col-4"/>
@@ -11,19 +12,23 @@
                 <h:form>
                     <p:growl id="growlLogin" life="2000" />
 
-                    <!-- Required fields -->
                     <p:panel header="Login into the system">
-                        <h:panelGrid columns="3" cellpadding="5">
+                        <p:panelGrid columns="3">
                             <h:outputLabel for="login" value="Login:" /> 
-                            <p:inputText id="login" value="#{sessionBean.login}" label="Login" />
+                            <p:inputText id="login" value="#{sessionBean.login}" label="Login"
+                                         required="true" requiredMessage="Login is required!">
+                                <f:validateLength minimum="4" maximum="20" />
+                            </p:inputText>
                             <p:message for="login" />
 
                             <h:outputLabel for="pass" value="Password: " />
-                            <p:password id="pass" value="#{sessionBean.password}" label="Password" />
+                            <p:password id="pass" value="#{sessionBean.password}" label="Password" 
+                                        required="true" requiredMessage="Password is required!">
+                                <f:validateLength minimum="4" maximum="30" />
+                            </p:password>
                             <p:message for="pass" />
-                        </h:panelGrid>
-                        <p:commandButton value="Login" update="growlLogin" 
-                                         action="#{sessionBean.logIn()}" icon="ui-icon-circle-check" />
+                        </p:panelGrid>
+                        <p:commandButton value="Login" update="growlLogin" action="#{sessionBean.logIn()}" icon="ui-icon-circle-check" />
                     </p:panel>
                 </h:form>
             </div>
