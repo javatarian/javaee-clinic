@@ -5,8 +5,8 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core">
-    <p:dialog header="Appointment Details" widgetVar="dialogShowAppointment" modal="true" showEffect="fade" hideEffect="fade"
-              resizable="false" draggable="false" styleClass="dialogAppointment">
+    <p:dialog header="Appointment Details" widgetVar="dialogShowAppointment" closeOnEscape="true" draggable="true"
+              resizable="false" modal="true" showEffect="fade" hideEffect="fade" styleClass="dialogAppointment">
         <p:outputPanel id="appointmentDetails" style="text-align:center;">
             <h:form>
                 <p:growl id="growlShowAppointment" life="2000" />

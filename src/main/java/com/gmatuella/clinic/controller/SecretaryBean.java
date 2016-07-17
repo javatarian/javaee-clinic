@@ -21,10 +21,10 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class SecretaryBean {
-    
+
     @EJB
     private SecretaryService secretaryService;
-    
+
     private Secretary registeredSecretary, pickedSecretary;
     private List<Secretary> secretaries, filteredSecretaries;
     private ClinicUtil clinicUtil;
@@ -42,7 +42,7 @@ public class SecretaryBean {
         secretaryService.save(registeredSecretary);
         secretaries = secretaryService.findAll();
         registeredSecretary = new Secretary();
-        
+
         clinicUtil.executeOnContext("PF('dialogRegisterSecretary').hide();");
         clinicUtil.addMessage("Secretary successfully registered!");
     }
@@ -50,9 +50,18 @@ public class SecretaryBean {
     public void editSecretary() {
         secretaryService.update(pickedSecretary);
         secretaries = secretaryService.findAll();
-        
+
         clinicUtil.executeOnContext("PF('dialogShowSecretary').hide();");
         clinicUtil.addMessage("Secretary successfully edited!");
+    }
+
+    public void deactivateDoctor() {
+        pickedSecretary.setStatus(Boolean.FALSE);
+        secretaryService.update(pickedSecretary);
+        secretaries = secretaryService.findAllActive();
+
+        clinicUtil.executeOnContext("PF('dialogShowSecretary').hide();");
+        clinicUtil.addMessage("Secretary successfully deactivated!");
     }
 
     public Secretary getRegisteredSecretary() {

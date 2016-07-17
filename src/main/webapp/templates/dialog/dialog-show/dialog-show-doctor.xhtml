@@ -5,8 +5,8 @@
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:p="http://primefaces.org/ui"
               xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:dialog header="Doctor Details" widgetVar="dialogShowDoctor" modal="true" draggable="false"
-              showEffect="fade" hideEffect="fade" resizable="false" styleClass="dialogDoctor">
+    <p:dialog header="Doctor Details" widgetVar="dialogShowDoctor" closeOnEscape="true" draggable="true"
+              resizable="false" modal="true" showEffect="fade" hideEffect="fade" styleClass="dialogDoctor">
         <p:outputPanel id="doctorDetails" style="text-align:center;">
             <h:form>
                 <p:growl id="growlShowDoctor" life="2000" />
@@ -44,14 +44,16 @@
 
                     <h:outputLabel for="password" value="Password:" />
                     <p:password id="password" match="repeatPassword" value="#{doctorBean.pickedDoctor.password}"
-                                label="password" required="true" requiredMessage="Password is required!">
+                                label="password" required="true" requiredMessage="Password is required!"
+                                feedback="true" redisplay="true">
                         <f:validateLength minimum="4" maximum="30" />
                     </p:password>
                     <p:message for="password" />
 
                     <h:outputLabel for="repeatPassword" value="Repeat Password:" />
                     <p:password id="repeatPassword" value="#{doctorBean.pickedDoctor.password}"
-                                label="repeatPassword" required="true" requiredMessage="Password is required!">
+                                label="repeatPassword" required="true" requiredMessage="Password is required!"
+                                redisplay="true">
                         <f:validateLength minimum="4" maximum="30" />
                     </p:password>
                     <p:message for="repeatPassword" />
@@ -65,6 +67,7 @@
 
                     <p:commandButton value="Cancel" oncomplete="PF('dialogShowDoctor').hide();" styleClass="ui-priority-primary"/>
                     <p:commandButton value="Edit" update="form-med:doctorTable growlShowDoctor" actionListener="#{doctorBean.editDoctor()}" icon="ui-icon-check" validateClient="true"/>
+                    <p:commandButton value="Deactivate" update="form-med:doctorTable growlShowDoctor" actionListener="#{doctorBean.deactivateDoctor()}" icon="ui-icon-check" validateClient="true"/>
                 </p:panelGrid>
             </h:form>
         </p:outputPanel>

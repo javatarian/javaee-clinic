@@ -24,7 +24,7 @@ public class DoctorBean {
 
     @EJB
     private DoctorService doctorService;
-    
+
     private Doctor registeredDoctor, pickedDoctor;
     private List<Doctor> doctors, filteredDoctors;
     private ClinicUtil clinicUtil;
@@ -42,21 +42,26 @@ public class DoctorBean {
         doctorService.save(registeredDoctor);
         doctors = doctorService.findAllActive();
         registeredDoctor = new Doctor();
-        
+
         clinicUtil.executeOnContext("PF('dialogRegisterDoctor').hide();");
         clinicUtil.addMessage("Doctor successfully registered!");
     }
 
     public void editDoctor() {
         doctorService.update(pickedDoctor);
-        doctors = doctorService.findAll();
+        doctors = doctorService.findAllActive();
 
         clinicUtil.executeOnContext("PF('dialogShowDoctor').hide();");
         clinicUtil.addMessage("Doctor sucessfully edited!");
     }
 
     public void deactivateDoctor() {
-        //Not implemented yet!
+        pickedDoctor.setStatus(Boolean.FALSE);
+        doctorService.update(pickedDoctor);
+        doctors = doctorService.findAllActive();
+
+        clinicUtil.executeOnContext("PF('dialogShowDoctor').hide();");
+        clinicUtil.addMessage("Doctor successfully deactivated!");
     }
 
     public Doctor getRegisteredDoctor() {

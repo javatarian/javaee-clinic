@@ -95,10 +95,20 @@ public class GenericService<T> {
     }
 
     //This method is kind of odd to be generic, but all the entities have the same
-    //field name for defining its current STATUS (redundant, isn't it?).
+    //field name for defining its current STATUS
     public List<T> findAllActive() {
         EntityManager entityManager = entityManagerUtil.createManager();
         List<T> tList = entityManager.createQuery(("FROM " + typeClass.getName() + " WHERE status = 1"))
+                .getResultList();
+        entityManager.close();
+
+        return tList;
+    }
+
+    //Same thing here as the previous method
+    public List<T> findAllInactive() {
+        EntityManager entityManager = entityManagerUtil.createManager();
+        List<T> tList = entityManager.createQuery(("FROM " + typeClass.getName() + " WHERE status = 0"))
                 .getResultList();
         entityManager.close();
 

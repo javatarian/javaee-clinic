@@ -5,8 +5,8 @@
               xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
               xmlns:p="http://primefaces.org/ui"
               xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <p:dialog header="Pacient Details" widgetVar="dialogShowPacient" modal="true"
-              showEffect="fade" draggable="false" hideEffect="fade" resizable="false" styleClass="dialogPacient">
+    <p:dialog header="Pacient Details" widgetVar="dialogShowPacient" closeOnEscape="true" draggable="true"
+              resizable="false" modal="true" showEffect="fade" hideEffect="fade" styleClass="dialogPacient">
         <p:outputPanel id="pacientDetails" style="text-align:center;">
             <h:form>
                 <p:growl id="growlShowPacient" life="2000" />
