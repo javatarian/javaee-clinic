@@ -20,6 +20,18 @@ JavaEE project with the purpose of creating a sort of **Clinic Management System
 - JasperReports -> Not implemented yet.
 
 ---
+## Details about the project
+
+- Singletons to manage some "utilities";
+- Focusing on making a UI responsive enough to Desktop/Tablet (you won't manage this kind of stuff on a mobile, right?);
+- Filters used to manage the respective users access permissions (and some containers only render for certain users);
+- Converters to control some input/outputs, like Dates and Entities;
+- Some entities may extend a mapped superclass, like Secretary and Doctor;
+- Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
+- Hashed the password into the database using PBKDF2 with Salt and HMAC-SHA1;
+- Kind of different GenericService without using the DAO layer/pattern.
+
+---
 ## Running the project...
 
 What you're *probably* going to need (recommended): 
@@ -35,16 +47,7 @@ To be added...
 To be added...
 
 ---
-## Details about the project
-
-- Singletons to manage some "utilities";
-- Focusing on making a UI responsive enough to Desktop/Tablet (you won't manage this kind of stuff on a mobile, right?);
-- Filters used to manage the respective users access permissions (and some containers only render for certain users);
-- Converters to control some input/outputs, like Dates and Entities;
-- Some entities may extend a mapped superclass, like Secretary and Doctor;
-- Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
-- Cipher encryption for password storage;
-- Kind of different GenericService without using the DAO layer/pattern.
+## Misc
 
 *"Wait, __without__ the __DAO pattern__?! __Every__ java project  - with persistence - has a DAO layer!!"*
 
