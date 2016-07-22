@@ -16,7 +16,8 @@ JavaEE project with the purpose of creating a sort of **Clinic Management System
 - PrimeFaces (JavaEE UI framework);
 - Hibernate (ORM and JPA implementation);
 - RESTful WebServices (JAX-RS) -> Not implemented yet;
-- JUnit -> Not implemented yet;
+- TestNG -> Not implemented yet;
+- Selenium WebDriver -> Not implemented yet;
 - JasperReports -> Not implemented yet.
 
 ---
@@ -29,7 +30,8 @@ JavaEE project with the purpose of creating a sort of **Clinic Management System
 - Focusing on making a UI responsive enough to Desktop/Tablet;
 - Some entities may extend a mapped superclass, like Secretary and Doctor;
 - Aiming for something like a modularization of the JSF Pages (mainly the dialogs);
-- Kind of different GenericService without using the DAO layer/pattern.
+- Kind of different GenericService without using the DAO layer/pattern;
+- Page Objects Pattern to test the pages (TBI).
 
 ---
 ## Running the project...
