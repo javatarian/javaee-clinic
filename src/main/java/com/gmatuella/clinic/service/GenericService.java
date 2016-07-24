@@ -5,8 +5,10 @@
  */
 package com.gmatuella.clinic.service;
 
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.util.EntityManagerUtil;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 
 /**
@@ -26,44 +28,39 @@ public class GenericService<T> {
         this.typeClass = typeClass;
     }
 
-    public void save(T entity) {
-        EntityManager entityManager = entityManagerUtil.createManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.persist(entity);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        }
+    public void save(T entity) throws GenericServiceException {
+        serviceTransaction(entity, Service.SAVE);
     }
 
-    public void update(T entity) {
-        EntityManager entityManager = entityManagerUtil.createManager();
-        try {
-            entityManager.getTransaction().begin();
-            entityManager.merge(entity);
-            entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-        } finally {
-            if (entityManager != null) {
-                entityManager.close();
-            }
-        }
+    public void update(T entity) throws GenericServiceException {
+        serviceTransaction(entity, Service.UPDATE);
     }
 
-    public void delete(T entity) {
+    public void delete(T entity) throws GenericServiceException {
+        serviceTransaction(entity, Service.DELETE);
+    }
+
+    private void serviceTransaction(T entity, Service action) throws GenericServiceException {
         EntityManager entityManager = entityManagerUtil.createManager();
         try {
             entityManager.getTransaction().begin();
-            entityManager.remove(entity);
+            switch (action) {
+                case SAVE:
+                    entityManager.persist(entity);
+                    break;
+
+                case UPDATE:
+                    entityManager.merge(entity);
+                    break;
+
+                case DELETE:
+                    entityManager.remove(entity);
+                    break;
+            }
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
+            throw new GenericServiceException(e.getMessage(), action);
         } finally {
             if (entityManager != null) {
                 entityManager.close();
