@@ -28,11 +28,11 @@ public class LoginPage {
     }
 
     public DashboardPage login() {
-        localDriver.get("http://localhost:8080/");
+        localDriver.get("http://localhost:8080/javaee-clinic/faces/login.xhtml");
         
-        loginInput = localDriver.findElement(By.id("?"));
-        passInput = localDriver.findElement(By.id("?"));
-        loginButton = localDriver.findElement(By.id("?"));
+        loginInput = localDriver.findElement(By.xpath("//*[contains(@id,'login')]"));
+        passInput = localDriver.findElement(By.xpath("//*[contains(@id,'pass')]"));
+        loginButton = localDriver.findElement(By.xpath("//*[contains(@id,'loginButton')]"));
 
         loginInput.click();
         loginInput.sendKeys("admin");

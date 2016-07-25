@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.pageobjects;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
  *
@@ -19,7 +20,9 @@ public class DashboardPage {
         this.loginPage = loginPage;
     }
 
-    public String getLoggedUserName() {
-        return loginPage.getLocalDriver().findElement(By.id("?")).getAttribute("?");
+    public boolean getLoggedAdmin() {
+        WebElement analyticsTab = loginPage.getLocalDriver().findElement(By.xpath("//*[contains(@id,'analytics')]"));
+        System.out.println(analyticsTab.isDisplayed());
+        return true;
     }
 }
