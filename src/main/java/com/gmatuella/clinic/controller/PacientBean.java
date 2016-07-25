@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Pacient;
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.service.PacientService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import java.util.List;
@@ -37,7 +38,7 @@ public class PacientBean {
         clinicUtil = ClinicUtil.getInstance();
     }
 
-    public void registerPacient() {
+    public void registerPacient() throws GenericServiceException {
         pacientService.save(registeredPacient);
         pacients = pacientService.findAll();
         registeredPacient = new Pacient();
@@ -46,7 +47,7 @@ public class PacientBean {
         clinicUtil.addMessage("Pacient successfully registered!");
     }
 
-    public void editPacient() {
+    public void editPacient() throws GenericServiceException {
         pacientService.update(pickedPacient);
         pacients = pacientService.findAll();
 

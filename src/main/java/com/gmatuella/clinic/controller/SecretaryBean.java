@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Secretary;
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.service.SecretaryService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import com.gmatuella.clinic.util.SecurityUtil;
@@ -40,7 +41,7 @@ public class SecretaryBean {
         securityUtil = SecurityUtil.getInstance();
     }
 
-    public void registerSecretary() {
+    public void registerSecretary() throws GenericServiceException {
         registeredSecretary.setStatus(Boolean.TRUE);
         registeredSecretary.setPassword(securityUtil.createHash(registeredSecretary.getPassword()));
 
@@ -52,7 +53,7 @@ public class SecretaryBean {
         clinicUtil.addMessage("Secretary successfully registered!");
     }
 
-    public void editSecretary() {
+    public void editSecretary() throws GenericServiceException {
         secretaryService.update(pickedSecretary);
         secretaries = secretaryService.findAll();
 
@@ -60,7 +61,7 @@ public class SecretaryBean {
         clinicUtil.addMessage("Secretary successfully edited!");
     }
 
-    public void deactivateSecretary() {
+    public void deactivateSecretary() throws GenericServiceException {
         pickedSecretary.setStatus(Boolean.FALSE);
         secretaryService.update(pickedSecretary);
         secretaries = secretaryService.findAllActive();

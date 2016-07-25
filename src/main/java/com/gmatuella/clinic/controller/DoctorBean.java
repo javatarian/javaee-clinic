@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Doctor;
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import com.gmatuella.clinic.util.SecurityUtil;
@@ -40,7 +41,7 @@ public class DoctorBean {
         securityUtil = SecurityUtil.getInstance();
     }
 
-    public void registerDoctor() {
+    public void registerDoctor() throws GenericServiceException {
         registeredDoctor.setStatus(Boolean.TRUE);
         registeredDoctor.setPassword(securityUtil.createHash(registeredDoctor.getPassword()));
         
@@ -52,7 +53,7 @@ public class DoctorBean {
         clinicUtil.addMessage("Doctor successfully registered!");
     }
 
-    public void editDoctor() {
+    public void editDoctor() throws GenericServiceException {
         doctorService.update(pickedDoctor);
         doctors = doctorService.findAllActive();
 
@@ -60,7 +61,7 @@ public class DoctorBean {
         clinicUtil.addMessage("Doctor sucessfully edited!");
     }
 
-    public void deactivateDoctor() {
+    public void deactivateDoctor() throws GenericServiceException {
         pickedDoctor.setStatus(Boolean.FALSE);
         doctorService.update(pickedDoctor);
         doctors = doctorService.findAllActive();

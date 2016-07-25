@@ -6,6 +6,7 @@
 package com.gmatuella.clinic.controller;
 
 import com.gmatuella.clinic.entity.Appointment;
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.service.AppointmentService;
 import com.gmatuella.clinic.util.ClinicUtil;
 import java.util.Collection;
@@ -38,7 +39,7 @@ public class AppointmentBean {
         clinicUtil = ClinicUtil.getInstance();
     }
 
-    public void registerAppointment() {
+    public void registerAppointment() throws GenericServiceException {
         registeredAppointment.setStatus(Boolean.TRUE);
         appointmentService.save(registeredAppointment);
         appointments = appointmentService.findAll();
@@ -48,7 +49,7 @@ public class AppointmentBean {
         clinicUtil.addMessage("Appointment successfully registered!");
     }
 
-    public void editAppointment() {
+    public void editAppointment() throws GenericServiceException {
         appointmentService.update(pickedAppointment);
         appointments = appointmentService.findAll();
 

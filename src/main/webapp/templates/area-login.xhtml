@@ -28,7 +28,7 @@
                             </p:password>
                             <p:message for="pass" />
                         </p:panelGrid>
-                        <p:commandButton value="Login" update="growlLogin" action="#{sessionBean.logIn()}" icon="ui-icon-circle-check" />
+                        <p:commandButton id="loginButton" value="Login" update="growlLogin" action="#{sessionBean.logIn()}" icon="ui-icon-circle-check" />
                     </p:panel>
                 </h:form>
             </div>

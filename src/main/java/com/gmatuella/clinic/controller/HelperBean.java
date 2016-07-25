@@ -8,6 +8,7 @@ package com.gmatuella.clinic.controller;
 import com.gmatuella.clinic.entity.Doctor;
 import com.gmatuella.clinic.entity.Pacient;
 import com.gmatuella.clinic.entity.Secretary;
+import com.gmatuella.clinic.exception.GenericServiceException;
 import com.gmatuella.clinic.service.DoctorService;
 import com.gmatuella.clinic.service.PacientService;
 import com.gmatuella.clinic.service.SecretaryService;
@@ -69,7 +70,7 @@ public class HelperBean {
         return "analytics.xhtml?faces-redirect=true";
     }
 
-    public String generateDoctors() {
+    public String generateDoctors() throws GenericServiceException {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Doctor medTeste = new Doctor();
@@ -85,7 +86,7 @@ public class HelperBean {
         return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String generatePacients() {
+    public String generatePacients() throws GenericServiceException {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Pacient pacTeste = new Pacient();
@@ -98,7 +99,7 @@ public class HelperBean {
         return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String generateSecretaries() {
+    public String generateSecretaries() throws GenericServiceException {
         for (int i = 0; i < 10; i++) {
             int randomValue = new Random().nextInt(99999);
             Secretary secTeste = new Secretary();
